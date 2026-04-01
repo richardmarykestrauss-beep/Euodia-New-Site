@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUODIA | Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ecom.css">
+    <style>
+        .form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 12px;
+            font-family: inherit;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: var(--gold);
+        }
+        .checkout-summary-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        @media (max-width: 600px) {
+            .form-section {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#hero">DIFFUSERS</a>
+                <a href="index.html#meaning">FRAGRANCES</a>
+                <a href="room-mists.html">ROOM MIST</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img" style="height: 50px;">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#meaning">STORY</a>
+                <a href="#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container cart-layout">
+        <!-- Form Area -->
+        <div>
+            <h1 class="serif gold" style="font-size: 32px; margin-bottom: 30px;">Shipping Information</h1>
+            <form id="checkout-form" class="form-section">
+                <div class="form-group full-width">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="First and last name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="082 123 4567" required>
+                </div>
+                <div class="form-group full-width">
+                    <label>Street Address</label>
+                    <input type="text" placeholder="House number and street name" required>
+                </div>
+                <div class="form-group">
+                    <label>Apartment / Unit / Suite</label>
+                    <input type="text" placeholder="Optional">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Province</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group full-width">
+                    <label>Country</label>
+                    <select required>
+                        <option value="ZA">South Africa</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label>Order Notes (Optional)</label>
+                    <textarea rows="4" placeholder="Notes about your order, e.g. special instructions for delivery."></textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Summary Area -->
+        <div class="summary-box">
+            <h2 class="serif gold">Order Review</h2>
+            <div id="checkout-items" style="margin-bottom: 20px; max-height: 300px; overflow-y: auto;">
+                <!-- Populated by JS -->
+            </div>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="summary-subtotal">R0</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span id="summary-shipping">R140</span>
+            </div>
+            <div class="summary-row summary-total" style="font-size: 24px;">
+                <span>Total</span>
+                <span id="summary-total">R140</span>
+            </div>
+            
+            <button type="button" onclick="window.location.href='payment.html'" class="btn btn-primary" style="width: 100%; margin-top: 30px;">CONTINUE TO PAYMENT</button>
+            <a href="cart.html" class="btn btn-secondary" style="width: 100%; margin-top: 15px; text-align: center;">BACK TO CART</a>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const itemsContainer = document.getElementById('checkout-items');
+            if (euodiaCart.items.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            euodiaCart.items.forEach(item => {
+                itemsContainer.innerHTML += `
+                    <div class="checkout-summary-item">
+                        <span>${item.quantity}x ${item.name} (${item.size})</span>
+                        <span>R${item.price * item.quantity}</span>
+                    </div>
+                `;
+            });
+
+            const totals = euodiaCart.getTotals();
+            document.getElementById('summary-subtotal').textContent = `R${totals.subtotal}`;
+            document.getElementById('summary-shipping').textContent = `R${totals.shipping}`;
+            document.getElementById('summary-total').textContent = `R${totals.total}`;
+        });
+    </script>
+</body>
+</html>

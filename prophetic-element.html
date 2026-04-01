@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prophetic Meaning - EUODIA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ecom.css?v=3">
+    <style>
+        .prophetic-layout {
+            padding-top: 180px; /* Fixed navbar space */
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prophetic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            transition: opacity 1s ease;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg) 90%);
+            pointer-events: none;
+        }
+        
+        .prophetic-header {
+            margin-bottom: 80px;
+        }
+        
+        .botanical-visual {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+            filter: sepia(0.5) brightness(0.9);
+        }
+        
+        .prophetic-title {
+            font-size: 80px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+        
+        .hebrew-subtitle {
+            font-size: 32px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .prophetic-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .prophetic-body {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            line-height: 2;
+            color: #ddd;
+            text-align: justify;
+            text-justify: inter-word;
+            padding: 0 40px;
+        }
+        
+        .prophetic-quote {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--gold);
+            font-style: italic;
+            font-size: 28px;
+            color: var(--gold);
+            text-align: center;
+        }
+        
+        .back-nav {
+            margin-top: 80px;
+            padding-bottom: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .prophetic-title { font-size: 50px; }
+            .prophetic-body { font-size: 20px; padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page-bg" class="prophetic-bg"></div>
+    <div class="bg-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#hero">DIFFUSERS</a>
+                <a href="room-mists.html">ROOM MIST</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#meaning">STORY</a>
+                <a href="index.html#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="content-area" class="container prophetic-layout">
+        <div id="loading-state">
+            <h1 class="serif gold">Deepening...</h1>
+        </div>
+    </div>
+
+    <!-- The same Connect section from Home Page for consistency -->
+    <section id="contact" class="connect-section">
+        <!-- Re-adding the connect grid here as well -->
+    </section>
+
+    <script src="js/cart.js"></script>
+    <script src="js/prophetic-data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ingredientId = urlParams.get('id');
+            const data = PROPHETIC_DATA[ingredientId];
+
+            if (!data) {
+                document.getElementById('content-area').innerHTML = `
+                    <h1 class="serif gold">Element Not Found</h1>
+                    <a href="index.html" class="btn btn-secondary">Return Home</a>
+                `;
+                return;
+            }
+
+            // Set Background
+            if (data.bgImage) {
+                document.getElementById('page-bg').style.backgroundImage = `url('${data.bgImage}')`;
+            }
+
+            document.getElementById('content-area').innerHTML = `
+                <div class="prophetic-header">
+                    <img src="images/botanicals/${ingredientId}.png" class="botanical-visual" alt="${data.title}" onerror="this.style.display='none'">
+                    <h1 class="prophetic-title serif gold">${data.title}</h1>
+                    <span class="hebrew-subtitle">${data.hebrew} (${data.transliteration})</span>
+                    <div class="prophetic-tags">
+                        ${data.tags.map(tag => `<span class="note-pill">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                
+                <div class="prophetic-body">
+                    ${data.content}
+                </div>
+                
+                <div class="back-nav">
+                    <a href="index.html" class="btn btn-secondary">Back to Collection</a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

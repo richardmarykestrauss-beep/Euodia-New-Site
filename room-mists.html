@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUODIA | Room Mists</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ecom.css?v=2">
+    <style>
+        /* Specific header style for this page */
+        .collection-header {
+            text-align: center;
+            padding-top: 180px;
+            margin-bottom: 60px;
+        }
+        .collection-header h1 {
+            font-size: 56px;
+            margin: 0;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        .collection-header p {
+            font-size: 16px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Mist Background Animation */
+        .mist-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('images/bg/room-mist-atmosphere.jpg') center/cover no-repeat;
+            opacity: 0.12;
+            pointer-events: none;
+            animation: mistDrift 40s linear infinite alternate;
+        }
+
+        @keyframes mistDrift {
+            from { transform: scale(1.0) translateX(0); }
+            to { transform: scale(1.2) translateX(2%); }
+        }
+
+        .mist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, transparent 0%, var(--bg) 90%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mist-background"></div>
+    <div class="mist-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#hero">DIFFUSERS</a>
+                <a href="index.html#meaning">FRAGRANCES</a>
+                <a href="room-mists.html">ROOM MIST</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#meaning">STORY</a>
+                <a href="#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="collection-header">
+        <h1 class="serif gold">Room Mists</h1>
+        <p>A Sacred Atmospheric Release</p>
+    </div>
+
+    <div class="container" style="padding-top: 0;">
+        <div class="product-grid">
+            <!-- Tropical Escape -->
+            <div class="product-card" id="card-tropical">
+                <div class="product-image-container">
+                    <img src="images/room-mists/tropical_escape.png" alt="Tropical Escape">
+                </div>
+                <div class="product-type">Room Mist</div>
+                <h2 class="product-title">Tropical Escape</h2>
+                <div class="product-desc">A gentle release into warmth and light. Fresh tropical brightness opens the room, while softer notes settle into a calm atmosphere.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <select class="size-select" style="width: 60%;">
+                            <option value="100ml">100ml</option>
+                            <option value="200ml">200ml</option>
+                        </select>
+                        <div class="price-display">R130</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-tropical" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="tropical" 
+                                data-name="Tropical Escape" 
+                                data-type="Room Mist" 
+                                data-price="130" 
+                                data-size="100ml"
+                                data-image="images/room-mists/tropical_escape.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=tropical" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Citrus Enigma -->
+            <div class="product-card" id="card-citrus">
+                <div class="product-image-container">
+                    <img src="images/room-mists/citrus_enigma.png" alt="Citrus Enigma">
+                </div>
+                <div class="product-type">Room Mist</div>
+                <h2 class="product-title">Citrus Enigma</h2>
+                <div class="product-desc">Clarity with a hidden warmth. A vibrant citrus composition that awakens the air, balanced by a smoother depth.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <select class="size-select" style="width: 60%;">
+                            <option value="100ml">100ml</option>
+                            <option value="200ml">200ml</option>
+                        </select>
+                        <div class="price-display">R130</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-citrus" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="citrus" 
+                                data-name="Citrus Enigma" 
+                                data-type="Room Mist" 
+                                data-price="130" 
+                                data-size="100ml"
+                                data-image="images/room-mists/citrus_enigma.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=citrus" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Rose Haven -->
+            <div class="product-card" id="card-rose">
+                <div class="product-image-container">
+                    <img src="images/room-mists/rose_haven.png" alt="Rose Haven">
+                </div>
+                <div class="product-type">Room Mist</div>
+                <h2 class="product-title">Rose Haven</h2>
+                <div class="product-desc">A floral stillness, soft and composed. Rose-led and graceful, this fragrance fills the room with calm beauty.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <select class="size-select" style="width: 60%;">
+                            <option value="100ml">100ml</option>
+                            <option value="200ml">200ml</option>
+                        </select>
+                        <div class="price-display">R130</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-rose" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="rose" 
+                                data-name="Rose Haven" 
+                                data-type="Room Mist" 
+                                data-price="130" 
+                                data-size="100ml"
+                                data-image="images/room-mists/rose_haven.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=rose" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Zesty Harmony -->
+            <div class="product-card" id="card-zesty">
+                <div class="product-image-container">
+                    <img src="images/room-mists/zesty_harmony.png" alt="Zesty Harmony">
+                </div>
+                <div class="product-type">Room Mist</div>
+                <h2 class="product-title">Zesty Harmony</h2>
+                <div class="product-desc">Brightness brought into balance. Fresh, clean citrus notes rise first, then settle into a rounded finish.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <select class="size-select" style="width: 60%;">
+                            <option value="100ml">100ml</option>
+                            <option value="200ml">200ml</option>
+                        </select>
+                        <div class="price-display">R130</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-zesty" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="zesty" 
+                                data-name="Zesty Harmony" 
+                                data-type="Room Mist" 
+                                data-price="130" 
+                                data-size="100ml"
+                                data-image="images/room-mists/zesty_harmony.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=zesty" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Pearfection Bliss -->
+            <div class="product-card" id="card-pear">
+                <div class="product-image-container">
+                    <img src="images/room-mists/pearfection_bliss.png" alt="Pearfection Bliss">
+                </div>
+                <div class="product-type">Room Mist</div>
+                <h2 class="product-title">Pearfection Bliss</h2>
+                <div class="product-desc">A softer sweetness, warm and inviting. Fruit and comfort meet in a fragrance that brings gentle abundance.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <select class="size-select" style="width: 60%;">
+                            <option value="100ml">100ml</option>
+                            <option value="200ml">200ml</option>
+                        </select>
+                        <div class="price-display">R130</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-pear" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="pear" 
+                                data-name="Pearfection Bliss" 
+                                data-type="Room Mist" 
+                                data-price="130" 
+                                data-size="100ml"
+                                data-image="images/room-mists/pearfection_bliss.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=pear" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connect Section -->
+    <section id="contact" class="connect-section">
+        <div class="connect-grid">
+            <div class="whatsapp-card">
+                <div class="qr-container">
+                    <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+                </div>
+                <h3 class="gold serif qr-title">CHAT ON WHATSAPP</h3>
+                <p class="qr-subtitle">Scan or click to start a conversation</p>
+                <a href="https://wa.me/27829241517" target="_blank" rel="noopener" class="btn btn-primary btn-chat">CHAT NOW</a>
+            </div>
+
+            <div class="social-info">
+                <h2 class="gold serif social-heading">Connect With Us</h2>
+                <p class="social-subheading">Follow our journey and explore sacred fragrances.</p>
+
+                <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="social-item">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </div>
+                    <div class="social-content">
+                        <h3>Facebook</h3>
+                        <p>@Euodia Fragrant</p>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="social-item">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                    <div class="social-content">
+                        <h3>Instagram</h3>
+                        <p>@euodia38</p>
+                    </div>
+                </a>
+
+                <div class="social-item">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div class="social-content">
+                        <h3>Email</h3>
+                        <p>euodia.fragrant@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/cart.js"></script>
+</body>
+</html>

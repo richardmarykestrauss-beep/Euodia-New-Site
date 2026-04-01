@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EUODIA — The Fragrance of Christ</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      font-family: 'Georgia', serif;
+      overflow-x: hidden;
+    }
+
+    .section {
+      width: 100%;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Section backgrounds */
+    .hero {
+      background-image: url('images/hero.jpg');
+    }
+
+    .meaning {
+      background-image: url('images/meaning.jpg');
+    }
+
+    .product {
+      background-image: url('images/covenant.jpg');
+    }
+
+    /* Optional: subtle dark overlay for consistency */
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.2);
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      color: #c6a46c;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #c6a46c;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .section {
+        height: 70vh;
+      }
+
+      .nav {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        gap: 15px;
+        font-size: 12px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="nav">
+    <img src="images/logo.png" alt="EUODIA Logo"/>
+    <div class="nav-links">
+      <a href="#hero">HOME</a>
+      <a href="#product">COVENANT</a>
+      <a href="#">COMING SOON</a>
+      <a href="#">STORY</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="section hero">
+    <div class="overlay"></div>
+  </section>
+
+  <!-- MEANING -->
+  <section class="section meaning">
+    <div class="overlay"></div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section id="product" class="section product">
+    <div class="overlay"></div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUODIA | Product Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ecom.css?v=2">
+    <style>
+        .product-detail-layout {
+            padding-top: 180px;
+        }
+        .detail-image-container {
+            background: #000;
+            border: 1px solid var(--border);
+            padding: 20px;
+        }
+        .detail-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .detail-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .poetic-desc {
+            font-size: 18px;
+            color: #ccc;
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .related-products {
+            margin-top: 100px;
+            border-top: 1px solid var(--border);
+            padding-top: 60px;
+        }
+
+        /* Mist Background Animation */
+        .mist-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('images/bg/room-mist-atmosphere.jpg') center/cover no-repeat;
+            opacity: 0.12;
+            pointer-events: none;
+            animation: mistDrift 40s linear infinite alternate;
+        }
+
+        @keyframes mistDrift {
+            from { transform: scale(1.0) translateX(0); }
+            to { transform: scale(1.2) translateX(2%); }
+        }
+
+        .mist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg) 95%);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mist-background"></div>
+    <div class="mist-overlay"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#hero">DIFFUSERS</a>
+                <a href="index.html#meaning">FRAGRANCES</a>
+                <a href="room-mists.html">ROOM MIST</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#meaning">STORY</a>
+                <a href="#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container product-detail-layout" id="product-detail-content">
+        <!-- Content populated by JS -->
+    </div>
+
+    <div class="container related-products">
+        <h2 class="serif gold" style="font-size: 32px; margin-bottom: 40px;">You May Also Like</h2>
+        <div class="product-grid" id="related-grid">
+            <!-- Related products populated by JS -->
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const product = PRODUCTS[productId];
+
+            if (!product) {
+                document.getElementById('product-detail-content').innerHTML = `
+                    <div style="text-align: center; width: 100%;">
+                        <h1 class="serif gold">Product Not Found</h1>
+                        <a href="room-mists.html" class="btn">Return to Collection</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Populate Main Content
+            document.getElementById('product-detail-content').innerHTML = `
+                <div class="detail-image-container">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="detail-info">
+                    <div class="product-type">${product.type}</div>
+                    <h1 class="serif gold">${product.name}</h1>
+                    <p class="poetic-desc">${product.poeticDesc}</p>
+                    
+                    <div class="price-display detail-price" id="detail-price">R130</div>
+                    
+                    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 10px;">
+                        <div style="flex: 1;">
+                            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 5px;">SIZE</label>
+                            <select class="size-select" style="width: 100%;">
+                                <option value="100ml">100ml</option>
+                                <option value="200ml">200ml</option>
+                            </select>
+                        </div>
+                        <div style="width: 80px;">
+                            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 5px;">QTY</label>
+                            <input type="number" value="1" min="1" class="qty-input" id="qty-${product.id}" style="width: 100%;">
+                        </div>
+                    </div>
+                    
+                    <div class="shipping-note">Flat rate delivery R140 across South Africa.</div>
+                    
+                    <button class="btn btn-primary add-to-cart-btn" 
+                            data-id="${product.id}" 
+                            data-name="${product.name}" 
+                            data-type="${product.type}" 
+                            data-price="130" 
+                            data-size="100ml"
+                            data-image="${product.image}"
+                            style="padding: 20px 40px; font-size: 14px; width: 100%;">ADD TO CART</button>
+                    
+                    <div style="margin-top: 20px; text-align: center;">
+                        <a href="room-mists.html" class="btn btn-secondary" style="width: 100%;">BACK TO COLLECTION</a>
+                    </div>
+                </div>
+            `;
+
+            // Populate Related Products (pick 3 others)
+            const otherIds = Object.keys(PRODUCTS).filter(id => id !== productId).slice(0, 3);
+            const relatedGrid = document.getElementById('related-grid');
+            otherIds.forEach(id => {
+                const p = PRODUCTS[id];
+                relatedGrid.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="${p.image}" alt="${p.name}">
+                        </div>
+                        <h3 class="product-title">${p.name}</h3>
+                        <a href="product-detail.html?id=${id}" class="btn btn-secondary">VIEW PRODUCT</a>
+                    </div>
+                `;
+            });
+
+            // Setup price updates for the newly added elements
+            setupPriceUpdates();
+        });
+    </script>
+    <!-- Connect Section -->
+    <section id="contact" class="connect-section">
+        <div class="connect-grid">
+            <div class="whatsapp-card">
+                <div class="qr-container">
+                    <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+                </div>
+                <h3 class="gold serif qr-title">CHAT ON WHATSAPP</h3>
+                <p class="qr-subtitle">Scan or click to start a conversation</p>
+                <a href="https://wa.me/27829241517" target="_blank" rel="noopener" class="btn btn-primary btn-chat">CHAT NOW</a>
+            </div>
+
+            <div class="social-info">
+                <h2 class="gold serif social-heading">Connect With Us</h2>
+                <p class="social-subheading">Follow our journey and explore sacred fragrances.</p>
+
+                <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="social-item">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </div>
+                    <div class="social-content">
+                        <h3>Facebook</h3>
+                        <p>@Euodia Fragrant</p>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="social-item">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                    <div class="social-content">
+                        <h3>Instagram</h3>
+                        <p>@euodia38</p>
+                    </div>
+                </a>
+
+                <div class="social-item">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div class="social-content">
+                        <h3>Email</h3>
+                        <p>euodia.fragrant@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

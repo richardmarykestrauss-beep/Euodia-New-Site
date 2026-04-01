@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUODIA | Secure Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ecom.css">
+    <style>
+        .payment-box {
+            max-width: 500px;
+            margin: 180px auto;
+            background: var(--charcoal);
+            border: 1px solid var(--border);
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        .form-group input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: white;
+            padding: 12px;
+            font-family: inherit;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: var(--gold);
+        }
+        .card-expiry-cvc {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .payment-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#hero">DIFFUSERS</a>
+                <a href="index.html#meaning">FRAGRANCES</a>
+                <a href="room-mists.html">ROOM MIST</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img" style="height: 50px;">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#meaning">STORY</a>
+                <a href="#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 0;">
+        <div class="payment-box">
+            <h1 class="serif gold" style="font-size: 32px; margin-bottom: 10px; text-align: center;">Secure Payment</h1>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px; font-size: 14px;">Total Amount: <span id="payment-total" class="gold">R0</span></p>
+
+            <div class="payment-icons">
+                <!-- Placeholder icons -->
+                <span style="font-size: 24px;">💳</span>
+                <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">VISA / MASTERCARD</span>
+            </div>
+
+            <form id="payment-form">
+                <div id="payment-element">
+                    <!-- Stripe Elements will inject the card form here -->
+                </div>
+                <div id="payment-message" class="hidden" style="color: #ff4d4d; margin-top: 10px; font-size: 14px;"></div>
+                
+                <button type="submit" class="btn btn-primary" id="pay-btn" style="width: 100%; margin-top: 30px; padding: 20px; font-weight: 500;">
+                    PAY <span id="btn-total">R0</span> NOW
+                </button>
+            </form>
+            
+            <p style="text-align: center; font-size: 11px; margin-top: 20px; color: var(--text-muted);">
+                🔒 Encrypted Secure Checkout
+            </p>
+        </div>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        const stripe = Stripe('pk_test_...'); // ACTION: Replace with your actual Publishable Key
+        let elements;
+
+        async function initialize() {
+            if (euodiaCart.items.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+
+            const totals = euodiaCart.getTotals();
+            document.getElementById('payment-total').textContent = `R${totals.total}`;
+            document.getElementById('btn-total').textContent = `R${totals.total}`;
+
+            // 1. Create PaymentIntent on the server
+            const response = await fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items: euodiaCart.items })
+            });
+            const { clientSecret } = await response.json();
+
+            // 2. Initialize Stripe Elements
+            const appearance = { 
+                theme: 'night',
+                variables: {
+                    colorPrimary: '#c4a45f',
+                    colorBackground: '#1a1a1a',
+                    colorText: '#ffffff',
+                    colorDanger: '#ff4d4d',
+                    fontFamily: 'Inter, sans-serif',
+                    spacingUnit: '4px',
+                    borderRadius: '0px',
+                }
+            };
+            elements = stripe.elements({ appearance, clientSecret });
+
+            const paymentElementOptions = { layout: 'tabs' };
+            const paymentElement = elements.create('payment', paymentElementOptions);
+            paymentElement.mount('#payment-element');
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('pay-btn');
+            const messageContainer = document.getElementById('payment-message');
+            
+            btn.disabled = true;
+            btn.textContent = 'WORKING...';
+
+            const { error } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: window.location.origin + "/index.html?payment=success",
+                },
+            });
+
+            if (error.type === "card_error" || error.type === "validation_error") {
+                messageContainer.textContent = error.message;
+                messageContainer.classList.remove('hidden');
+            } else {
+                messageContainer.textContent = "An unexpected error occurred.";
+                messageContainer.classList.remove('hidden');
+            }
+
+            btn.disabled = false;
+            btn.textContent = 'PAY NOW';
+        }
+
+        document.getElementById('payment-form').addEventListener('submit', handleSubmit);
+        initialize();
+
+        // Check if redirected with success
+        if (new URLSearchParams(window.location.search).get('payment_intent_client_secret')) {
+             localStorage.removeItem('euodia_cart');
+        }
+    </script>
+</body>
+</html>

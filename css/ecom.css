@@ -1,0 +1,773 @@
+:root {
+    --gold: #D4AF37;
+    --dark-bg: #0a0a0a;
+    --charcoal: #121212;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(212, 175, 55, 0.15);
+    --text-muted: #a0a0a0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #f0f0f0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.serif {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.gold {
+    color: var(--gold);
+}
+
+/* Navbar Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-logo-img {
+    height: 50px;
+    width: auto;
+}
+
+nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+.cart-count {
+    background: var(--gold);
+    color: black;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 160px 40px 60px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+/* Product Card */
+.product-card {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.product-image-container {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background: #000;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.05);
+}
+
+.product-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    margin: 10px 0;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+.product-type {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.product-desc {
+    font-size: 14px;
+    color: #ccc;
+    height: 4.8em;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Controls */
+.product-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.size-select, .qty-input, input[type="text"], input[type="email"], select {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 12px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.size-select:focus, .qty-input:focus, input:focus {
+    border-color: var(--gold);
+}
+
+.price-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--gold);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: black;
+}
+
+.btn-primary:hover {
+    background: #fff;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+}
+
+/* Detail Page */
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.detail-info h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.detail-price {
+    font-size: 32px;
+    margin: 20px 0;
+}
+
+.shipping-note {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin: 15px 0;
+}
+
+/* Sidebar / Summary Layouts */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+}
+
+.summary-box {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    padding: 30px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.summary-total {
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 20px;
+    color: var(--gold);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-links {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav a {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    .product-detail-layout, .cart-layout {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        padding: 100px 20px 40px;
+    }
+
+    .connect-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .hero-section {
+        padding: 0 5%;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-overlay {
+        margin: 0 auto;
+    }
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
+/* --- Hero Section (Refined) --- */
+.hero-section {
+    min-height: 85vh;
+    background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%),
+                url('../images/bg/hero-full.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 10%;
+}
+
+.hero-overlay {
+    max-width: 700px;
+    z-index: 2;
+    padding: 0;
+    text-align: left; /* Explicitly left-aligned for clarity */
+}
+
+@media (max-width: 992px) {
+    .hero-section {
+        text-align: center;
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                    url('../images/bg/hero-full.jpg') center/cover no-repeat;
+        padding-top: 100px;
+        padding-bottom: 60px;
+        justify-content: center;
+    }
+    .hero-overlay {
+        margin: 0 auto;
+    }
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
+.hero-label {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 1;
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: clamp(38px, 6vw, 64px);
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: 1px;
+}
+
+.hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    margin: 20px 0 35px;
+    font-style: normal;
+    font-weight: 300;
+    color: #dedede;
+    line-height: 1.6;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-luxury {
+    background: var(--gold);
+    color: black;
+    padding: 18px 40px;
+    font-weight: 600;
+    border: 1px solid var(--gold);
+}
+
+.btn-luxury:hover {
+    background: transparent;
+    color: var(--gold);
+}
+
+.btn-luxury-outline {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    color: var(--gold);
+    padding: 18px 40px;
+}
+
+.btn-luxury-outline:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: var(--gold);
+}
+
+/* --- Compact Sections --- */
+.section-compact {
+    padding: 60px 0; /* Slashed padding from 80px */
+    background: #000;
+}
+
+.section-focal {
+    padding: 50px 0; /* Reduced from 60px */
+    background: #000;
+    border-bottom: 1px solid var(--border);
+}
+
+.focal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.focal-image img {
+    max-width: 90%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    animation: floating 6s ease-in-out infinite;
+}
+
+.focal-info .hebrew-title {
+    font-size: 38px;
+    margin-bottom: 5px;
+    opacity: 0.6;
+}
+
+.focal-subtitle {
+    font-size: 13px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* --- Philosophy Cards --- */
+.philosophy-grid {
+    display: flex;
+    gap: 30px;
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding: 0 40px;
+}
+
+.phil-card {
+    flex: 1;
+    background: #080808;
+    border: 1px solid var(--border);
+    padding: 35px;
+    text-align: center;
+}
+
+.phil-card h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.phil-card p {
+    font-size: 15px;
+    color: #bbb;
+    line-height: 1.8;
+}
+
+/* --- Compact Contact Block --- */
+.contact-block {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 50px 40px;
+    background: #080808;
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.contact-item:hover {
+    color: var(--gold);
+}
+
+.qr-small {
+    text-align: center;
+    border-left: 1px solid var(--border);
+    padding-left: 60px;
+}
+
+.qr-small img {
+    width: 173px; /* Enlarged by 15% from 150px */
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--gold);
+    padding: 12px; /* Increased for better visual balance */
+    background: #000;
+}
+
+/* --- Connect Section --- */
+.connect-section {
+    padding: 100px 5%;
+    background: #050505;
+    border-top: 1px solid var(--border);
+    position: relative;
+}
+
+.connect-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.whatsapp-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    padding: 50px;
+    text-align: center;
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.qr-container {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 30px;
+    border: 1px solid var(--gold);
+    padding: 15px;
+    border-radius: 15px;
+    background: #000;
+}
+
+.qr-container img {
+    width: 100%;
+    height: auto;
+}
+
+.social-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.social-item:hover {
+    transform: translateX(10px);
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    color: var(--gold);
+    font-size: 24px;
+}
+
+.social-content h3 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+}
+
+.social-content p {
+    margin: 5px 0 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* --- Covenant Section (Rebuild) --- */
+.covenant-section {
+    min-height: 100vh;
+    width: 100%;
+    background: url('../images/covenant-bg.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 100px 10%;
+    position: relative;
+    border-top: 1px solid var(--border);
+}
+
+.covenant-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product-visual {
+    text-align: center;
+    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.5));
+}
+
+.product-visual img {
+    max-width: 100%;
+    height: auto;
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.covenant-info {
+    max-width: 600px;
+}
+
+.hebrew-title {
+    font-size: 80px;
+    color: var(--gold);
+    margin: 0;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.covenant-subtitle {
+    font-size: 18px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 30px;
+    display: block;
+}
+
+.covenant-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.note-pills {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.note-pill {
+    padding: 12px 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.note-pill:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-enquire-large {
+    padding: 20px 50px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.btn-enquire-large:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+@media (max-width: 1024px) {
+    .covenant-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+    }
+    .covenant-info {
+        margin: 0 auto;
+    }
+    .note-pills {
+        justify-content: center;
+    }
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.qr-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.qr-subtitle {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.btn-chat {
+    border-radius: 50px;
+    padding: 15px 40px;
+}
+
+.social-heading {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.social-subheading {
+    color: #ccc;
+    margin-bottom: 40px;
+}

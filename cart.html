@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUODIA | Your Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ecom.css?v=2">
+    <style>
+        .cart-item {
+            display: grid;
+            grid-template-columns: 120px 2fr 1fr 1fr 50px;
+            gap: 20px;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .cart-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            background: #000;
+        }
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="index.html#hero">DIFFUSERS</a>
+                <a href="index.html#meaning">FRAGRANCES</a>
+                <a href="room-mists.html">ROOM MIST</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#meaning">STORY</a>
+                <a href="#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="serif gold" style="font-size: 48px; margin-bottom: 40px;">Your Cart</h1>
+        
+        <div class="cart-layout" id="cart-content">
+            <!-- Items Area -->
+            <div id="cart-items-list">
+                <!-- Items populated by JS -->
+            </div>
+
+            <!-- Summary Area -->
+            <div class="summary-box">
+                <h2 class="serif gold">Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">R0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping (Flat Rate)</span>
+                    <span id="shipping">R140</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="total-price">R140</span>
+                </div>
+                <a href="checkout.html" class="btn btn-primary" style="width: 100%; margin-top: 30px; text-align: center;">PROCEED TO CHECKOUT</a>
+                <a href="room-mists.html" class="btn btn-secondary" style="width: 100%; margin-top: 15px; text-align: center;">CONTINUE SHOPPING</a>
+            </div>
+        </div>
+
+        <div id="empty-cart-msg" style="display: none; text-align: center; padding: 100px 0;">
+            <h2 class="serif gold">Your cart is empty</h2>
+            <p>Discover our range of sacred room mists.</p>
+            <a href="room-mists.html" class="btn btn-primary" style="margin-top: 30px;">SHOP COLLECTION</a>
+        </div>
+    </div>
+
+    <script src="js/cart.js"></script>
+    <script>
+        function renderCart() {
+            const list = document.getElementById('cart-items-list');
+            const cartContent = document.getElementById('cart-content');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            
+            if (euodiaCart.items.length === 0) {
+                cartContent.style.display = 'none';
+                emptyMsg.style.display = 'block';
+                return;
+            }
+
+            cartContent.style.display = 'grid';
+            emptyMsg.style.display = 'none';
+            
+            list.innerHTML = '';
+            euodiaCart.items.forEach(item => {
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div>
+                            <div class="serif" style="font-size: 20px; color: var(--gold);">${item.name}</div>
+                            <div style="font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px;">${item.type} | ${item.size}</div>
+                        </div>
+                        <div class="price-display" style="font-size: 18px;">R${item.price}</div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="number" value="${item.quantity}" min="1" class="qty-input" style="width: 60px;" 
+                                   onchange="euodiaCart.updateQuantity('${item.id}', '${item.size}', this.value)">
+                        </div>
+                        <div class="price-display" style="font-size: 18px; color: #fff;">R${item.price * item.quantity}</div>
+                        <button class="remove-btn" onclick="euodiaCart.removeItem('${item.id}', '${item.size}')">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                `;
+            });
+
+            const totals = euodiaCart.getTotals();
+            document.getElementById('subtotal').textContent = `R${totals.subtotal}`;
+            // LOCKED: Fixed R140 shipping
+            document.getElementById('shipping').textContent = `R${totals.shipping}`;
+            document.getElementById('total-price').textContent = `R${totals.total}`;
+        }
+
+        window.addEventListener('cartUpdated', renderCart);
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>
