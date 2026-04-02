@@ -8,7 +8,9 @@ const PRODUCTS = {
         price200: 180,
         image: 'images/room-mists/tropical_escape.png',
         shortDesc: 'A gentle release into warmth and light.',
-        poeticDesc: 'A gentle release into warmth and light. Fresh tropical brightness opens the room, while softer notes settle into a calm and lingering atmosphere. Designed to evoke the feeling of a sun-drenched sanctuary, this fragrance transforms any space into a haven of tranquility.'
+        poeticDesc: 'A gentle release into warmth and light. Fresh tropical brightness opens the room, while softer notes settle into a calm atmosphere.',
+        ritual: 'Release 2–3 sprays into the air or corners of your space. Allow the fragrance to settle and shape the atmosphere. Use during moments of stillness, reflection, or transition.',
+        notes: 'Cedarwood · Cypress · Frankincense'
     },
     'citrus': {
         id: 'citrus',
@@ -18,7 +20,9 @@ const PRODUCTS = {
         price200: 180,
         image: 'images/room-mists/citrus_enigma.png',
         shortDesc: 'Clarity with a hidden warmth.',
-        poeticDesc: 'Clarity with a hidden warmth. A vibrant citrus composition that awakens the air, balanced by a smoother depth that keeps the fragrance refined. This enigmatic blend offers a refreshing burst of energy followed by a sophisticated, lingering trail of warmth.'
+        poeticDesc: 'Clarity with a hidden warmth. A vibrant citrus composition that awakens the air, balanced by a smoother depth.',
+        ritual: 'Release 2–3 sprays into the air or corners of your space. Allow the fragrance to settle and shape the atmosphere. Use during moments of stillness, reflection, or transition.',
+        notes: 'Cedarwood · Cypress · Frankincense'
     },
     'rose': {
         id: 'rose',
@@ -28,7 +32,9 @@ const PRODUCTS = {
         price200: 180,
         image: 'images/room-mists/rose_haven.png',
         shortDesc: 'A floral stillness, soft and composed.',
-        poeticDesc: 'A floral stillness, soft and composed. Rose-led and graceful, this fragrance fills the room with calm beauty and a quiet sense of presence. It is a timeless expression of elegance, bringing the serene atmosphere of a blooming garden into your home.'
+        poeticDesc: 'A floral stillness, soft and composed. Rose-led and grace-filled, this fragrance fills the room with calm beauty.',
+        ritual: 'Release 2–3 sprays into the air or corners of your space. Allow the fragrance to settle and shape the atmosphere. Use during moments of stillness, reflection, or transition.',
+        notes: 'Cedarwood · Cypress · Frankincense'
     },
     'zesty': {
         id: 'zesty',
@@ -38,7 +44,9 @@ const PRODUCTS = {
         price200: 180,
         image: 'images/room-mists/zesty_harmony.png',
         shortDesc: 'Brightness brought into balance.',
-        poeticDesc: 'Brightness brought into balance. Fresh, clean citrus notes rise first, then settle into a lighter, rounded finish that lifts the whole space. This harmonious composition creates an uplifting and vibrant environment, perfect for moments of renewal.'
+        poeticDesc: 'Brightness brought into balance. Fresh, clean citrus notes rise first, then settle into a rounded finish.',
+        ritual: 'Release 2–3 sprays into the air or corners of your space. Allow the fragrance to settle and shape the atmosphere. Use during moments of stillness, reflection, or transition.',
+        notes: 'Cedarwood · Cypress · Frankincense'
     },
     'pear': {
         id: 'pear',
@@ -48,7 +56,9 @@ const PRODUCTS = {
         price200: 180,
         image: 'images/room-mists/pearfection_bliss.png',
         shortDesc: 'A softer sweetness, warm and inviting.',
-        poeticDesc: 'A softer sweetness, warm and inviting. Fruit and comfort meet in a fragrance that brings gentle abundance into the room without becoming heavy. A delightful blend of sweet pear and warm undertones, it offers a sense of Cozy luxury.'
+        poeticDesc: 'A softer sweetness, warm and inviting. Fruit and comfort meet in a fragrance that brings gentle abundance.',
+        ritual: 'Release 2–3 sprays into the air or corners of your space. Allow the fragrance to settle and shape the atmosphere. Use during moments of stillness, reflection, or transition.',
+        notes: 'Cedarwood · Cypress · Frankincense'
     }
 };
 
@@ -152,15 +162,13 @@ document.body.addEventListener('click', (e) => {
         
         euodiaCart.addItem(product);
         
-        // Feedback
+        // Refined Feedback
         const originalText = btn.textContent;
         btn.textContent = 'ADDED';
-        btn.style.backgroundColor = '#4CAF50';
-        btn.style.color = 'white';
+        btn.classList.add('btn-added');
         setTimeout(() => {
             btn.textContent = originalText;
-            btn.style.backgroundColor = '';
-            btn.style.color = '';
+            btn.classList.remove('btn-added');
         }, 1500);
     }
 });

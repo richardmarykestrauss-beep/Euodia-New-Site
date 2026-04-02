@@ -35,10 +35,12 @@ nav {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 15px 0;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    padding: 20px 0; /* Slightly more room */
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother transition */
+    background: rgba(0, 0, 0, 0.4); /* Subtle baseline */
 }
 
 .nav-container {
@@ -220,6 +222,15 @@ nav a:hover {
 .btn-secondary:hover {
     background: rgba(212, 175, 55, 0.1);
     color: var(--gold);
+}
+
+/* Refined 'Added' State */
+.btn-added {
+    background: transparent !important;
+    border: 1px solid var(--gold) !important;
+    color: var(--gold) !important;
+    letter-spacing: 4px !important;
+    transition: all 0.3s ease;
 }
 
 /* Detail Page */
@@ -513,10 +524,42 @@ nav a:hover {
     color: var(--gold);
 }
 
+.contact-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
 .qr-small {
     text-align: center;
     border-left: 1px solid var(--border);
     padding-left: 60px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .contact-block {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+    }
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .qr-small {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--border);
+        padding-top: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .qr-small img {

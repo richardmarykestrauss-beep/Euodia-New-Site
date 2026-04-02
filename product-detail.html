@@ -134,23 +134,33 @@
                     <h1 class="serif gold">${product.name}</h1>
                     <p class="poetic-desc">${product.poeticDesc}</p>
                     
-                    <div class="price-display detail-price" id="detail-price">R130</div>
+                    <div class="notes-section" style="margin-top: 5px;">
+                        <span class="gold serif" style="font-size: 13px; letter-spacing: 2px; display: block; margin-bottom: 8px;">Notes</span>
+                        <p style="font-size: 15px; color: #ccc; margin: 0; font-weight: 300;">${product.notes}</p>
+                    </div>
+
+                    <div class="ritual-section" style="margin-top: 25px; border-top: 1px solid var(--border); padding-top: 25px;">
+                        <span class="gold serif" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 12px;">Sacred Ritual</span>
+                        <p style="font-size: 15px; color: #aaa; line-height: 1.8; font-weight: 300; white-space: pre-line;">${product.ritual}</p>
+                    </div>
+
+                    <div class="price-display detail-price" id="detail-price" style="margin: 30px 0 10px;">R130</div>
                     
                     <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 10px;">
                         <div style="flex: 1;">
-                            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 5px;">SIZE</label>
+                            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 8px; letter-spacing: 1px;">SIZE</label>
                             <select class="size-select" style="width: 100%;">
                                 <option value="100ml">100ml</option>
                                 <option value="200ml">200ml</option>
                             </select>
                         </div>
                         <div style="width: 80px;">
-                            <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 5px;">QTY</label>
+                            <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 8px; letter-spacing: 1px;">QTY</label>
                             <input type="number" value="1" min="1" class="qty-input" id="qty-${product.id}" style="width: 100%;">
                         </div>
                     </div>
                     
-                    <div class="shipping-note">Flat rate delivery R140 across South Africa.</div>
+                    <div class="shipping-note" style="margin-bottom: 25px;">Flat rate delivery R140 across South Africa.</div>
                     
                     <button class="btn btn-primary add-to-cart-btn" 
                             data-id="${product.id}" 
@@ -159,10 +169,10 @@
                             data-price="130" 
                             data-size="100ml"
                             data-image="${product.image}"
-                            style="padding: 20px 40px; font-size: 14px; width: 100%;">ADD TO CART</button>
+                            style="padding: 20px 40px; font-size: 13px; width: 100%; font-weight: 600;">ADD TO CART</button>
                     
-                    <div style="margin-top: 20px; text-align: center;">
-                        <a href="room-mists.html" class="btn btn-secondary" style="width: 100%;">BACK TO COLLECTION</a>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <a href="room-mists.html" class="btn btn-secondary" style="width: 100%; border-color: rgba(212, 175, 55, 0.3);">BACK TO COLLECTION</a>
                     </div>
                 </div>
             `;
