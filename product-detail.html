@@ -79,9 +79,8 @@
         <div class="nav-container">
             <div class="nav-links">
                 <a href="index.html">HOME</a>
-                <a href="index.html#hero">DIFFUSERS</a>
-                <a href="index.html#meaning">FRAGRANCES</a>
-                <a href="room-mists.html">ROOM MIST</a>
+                <a href="shop.html">SHOP</a>
+                <a href="room-mists.html">ROOM MISTS</a>
             </div>
             
             <a href="index.html" class="nav-logo">
@@ -89,12 +88,15 @@
             </a>
 
             <div class="nav-links">
-                <a href="index.html#meaning">STORY</a>
+                <a href="diffusers.html">DIFFUSERS</a>
+                <a href="exclusive-oils.html">EXCLUSIVE OILS</a>
                 <a href="#contact">CONTACT</a>
                 <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
             </div>
         </div>
     </nav>
+
+
 
     <div class="container product-detail-layout" id="product-detail-content">
         <!-- Content populated by JS -->
@@ -124,6 +126,14 @@
                 return;
             }
 
+            // Generate Ingredients HTML
+            const ingredientsHTML = product.ingredients.map(ing => `
+                <div class="ingredient-item">
+                    <span class="ingredient-name serif gold">${ing.name}</span>
+                    <p class="ingredient-desc">${ing.desc}</p>
+                </div>
+            `).join('');
+
             // Populate Main Content
             document.getElementById('product-detail-content').innerHTML = `
                 <div class="detail-image-container">
@@ -132,21 +142,29 @@
                 <div class="detail-info">
                     <div class="product-type">${product.type}</div>
                     <h1 class="serif gold">${product.name}</h1>
-                    <p class="poetic-desc">${product.poeticDesc}</p>
+                    <p class="poetic-desc" style="margin-bottom: 30px;">${product.poeticDesc}</p>
                     
-                    <div class="notes-section" style="margin-top: 5px;">
-                        <span class="gold serif" style="font-size: 13px; letter-spacing: 2px; display: block; margin-bottom: 8px;">Notes</span>
-                        <p style="font-size: 15px; color: #ccc; margin: 0; font-weight: 300;">${product.notes}</p>
+                    <div class="ingredients-section">
+                        <span class="ingredients-title serif">Sacred Ingredients</span>
+                        <div class="ingredients-grid">
+                            ${ingredientsHTML}
+                        </div>
                     </div>
 
-                    <div class="ritual-section" style="margin-top: 25px; border-top: 1px solid var(--border); padding-top: 25px;">
-                        <span class="gold serif" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 12px;">Sacred Ritual</span>
-                        <p style="font-size: 15px; color: #aaa; line-height: 1.8; font-weight: 300; white-space: pre-line;">${product.ritual}</p>
+                    <div class="story-divider"></div>
+
+                    <div class="ritual-section">
+                        <span class="ritual-title serif">Sacred Ritual</span>
+                        <p class="ritual-text">${product.ritual}</p>
                     </div>
 
-                    <div class="price-display detail-price" id="detail-price" style="margin: 30px 0 10px;">R130</div>
+                    <div class="story-divider"></div>
+
+                    <span class="scarcity-line">Limited release — once sold out, this blend may not return soon.</span>
+
+                    <div class="price-display detail-price" id="detail-price" style="margin: 0 0 10px;">R130</div>
                     
-                    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 15px;">
                         <div style="flex: 1;">
                             <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 8px; letter-spacing: 1px;">SIZE</label>
                             <select class="size-select" style="width: 100%;">
@@ -160,7 +178,8 @@
                         </div>
                     </div>
                     
-                    <div class="shipping-note" style="margin-bottom: 25px;">Flat rate delivery R140 across South Africa.</div>
+                    <div class="shipping-note" style="margin-bottom: 5px;">Flat rate delivery R140 across South Africa.</div>
+                    <div class="context-line" style="margin-bottom: 25px;">Available across South Africa</div>
                     
                     <button class="btn btn-primary add-to-cart-btn" 
                             data-id="${product.id}" 
@@ -169,13 +188,25 @@
                             data-price="130" 
                             data-size="100ml"
                             data-image="${product.image}"
-                            style="padding: 20px 40px; font-size: 13px; width: 100%; font-weight: 600;">ADD TO CART</button>
+                            style="padding: 22px 40px; font-size: 13px; width: 100%; font-weight: 600; letter-spacing: 3px;">BEGIN THE EXPERIENCE</button>
                     
-                    <div style="margin-top: 15px; text-align: center;">
-                        <a href="room-mists.html" class="btn btn-secondary" style="width: 100%; border-color: rgba(212, 175, 55, 0.3);">BACK TO COLLECTION</a>
+                    <span class="micro-trust" style="text-align: center;">Crafted in small batches • Limited availability</span>
+
+                    <div style="margin-top: 30px;">
+                        <a href="https://wa.me/27705183949?text=I%20would%20like%20to%20enquire%20privately%20about%20the%20${product.name}%20fragrance." 
+                           target="_blank" rel="noopener"
+                           class="btn btn-enquire-luxury" 
+                           style="padding: 18px 40px; font-size: 11px; text-align: center;">SPEAK TO US ON WHATSAPP</a>
+                        <span class="cta-subtext" style="text-align: center;">For personal guidance or custom orders</span>
+                    </div>
+                    
+                    <div style="margin-top: 25px; text-align: center;">
+                        <a href="shop.html" class="btn btn-secondary" style="width: 100%; border-color: rgba(212, 175, 55, 0.1); font-size: 10px; opacity: 0.6;">BACK TO COLLECTION</a>
                     </div>
                 </div>
             `;
+
+
 
             // Populate Related Products (pick 3 others)
             const otherIds = Object.keys(PRODUCTS).filter(id => id !== productId).slice(0, 3);
@@ -204,9 +235,10 @@
                 <div class="qr-container">
                     <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
                 </div>
-                <h3 class="gold serif qr-title">CHAT ON WHATSAPP</h3>
-                <p class="qr-subtitle">Scan or click to start a conversation</p>
-                <a href="https://wa.me/27829241517" target="_blank" rel="noopener" class="btn btn-primary btn-chat">CHAT NOW</a>
+                <h3 class="gold serif qr-title">SPEAK TO US ON WHATSAPP</h3>
+                <p class="qr-subtitle">For personal guidance or custom orders</p>
+                <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-primary btn-chat" style="letter-spacing: 2px;">SEND MESSAGE</a>
+
             </div>
 
             <div class="social-info">

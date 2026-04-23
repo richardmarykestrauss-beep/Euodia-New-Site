@@ -22,7 +22,7 @@
         <div class="nav-container">
             <div class="nav-links">
                 <a href="index.html">HOME</a>
-                <a href="#covenant">SHOP</a>
+                <a href="shop.html">SHOP</a>
                 <a href="room-mists.html">ROOM MISTS</a>
             </div>
             
@@ -31,11 +31,15 @@
             </a>
 
             <div class="nav-links">
-                <a href="#contact">CONNECT</a>
+                <a href="diffusers.html">DIFFUSERS</a>
+                <a href="exclusive-oils.html">EXCLUSIVE OILS</a>
+                <a href="#contact">CONTACT</a>
                 <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
             </div>
         </div>
     </nav>
+
+
 
     <!-- 1. HERO SECTION -->
     <section class="hero-section">
@@ -45,7 +49,7 @@
             <p class="hero-subtitle">Premium diffuser oils inspired by ancient botanicals, crafted to transform your space with intention and depth.</p>
             <div class="hero-btns">
                 <a href="#covenant" class="btn btn-luxury">Shop Covenant</a>
-                <a href="https://wa.me/27829241517" target="_blank" rel="noopener" class="btn btn-luxury-outline">Chat on WhatsApp</a>
+                <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury-outline">Chat on WhatsApp</a>
             </div>
         </div>
     </section>
@@ -70,7 +74,8 @@
     </section>
 
     <!-- 3. BRAND STORY SECTION -->
-    <section class="section-compact" style="text-align: center; border-bottom: 1px solid var(--border);">
+    <section class="section-compact" style="text-align: center;">
+
         <div style="max-width: 700px; margin: 0 auto; padding: 0 40px;">
             <h2 class="gold serif" style="font-size: 32px; margin-bottom: 25px;">The Meaning of Euodia</h2>
             <p style="font-size: 18px; line-height: 1.8; color: #ccc; font-weight: 300;">
@@ -79,19 +84,32 @@
         </div>
     </section>
 
-    <!-- 4. BRAND VALUES / PHILOSOPHY CARDS -->
-    <section class="section-compact" style="padding-top: 40px; padding-bottom: 40px;">
-        <div class="philosophy-grid">
-            <div class="phil-card">
-                <h3 class="serif">Brand Direction</h3>
-                <p>Dark. Cinematic. Sacred. Elevated.</p>
-            </div>
-            <div class="phil-card">
-                <h3 class="serif">Product Philosophy</h3>
-                <p>Atmosphere first. Every note intentional.</p>
+    <!-- 4. THE JOURNEY OF EUODIA -->
+    <section class="section-compact journey-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="journey-title gold serif">The Journey of Euodia</h2>
+            <div class="journey-grid">
+                <div class="journey-step">
+                    <span class="step-num gold">STEP 1</span>
+                    <h3 class="serif gold">Atmosphere</h3>
+                    <p>Every space carries a presence. Euodia begins by shaping the unseen — the atmosphere around you.</p>
+                </div>
+                <div class="journey-divider"></div>
+                <div class="journey-step">
+                    <span class="step-num gold">STEP 2</span>
+                    <h3 class="serif gold">Intention</h3>
+                    <p>Each fragrance is crafted with purpose. Not just to scent a room, but to anchor a moment.</p>
+                </div>
+                <div class="journey-divider"></div>
+                <div class="journey-step">
+                    <span class="step-num gold">STEP 3</span>
+                    <h3 class="serif gold">Presence</h3>
+                    <p>What fills the air, fills the experience. Euodia transforms space into stillness, clarity, and depth.</p>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- 5. CONTACT / CTA SECTION -->
     <section id="contact" class="section-compact">
@@ -102,12 +120,16 @@
                 
                 <div style="display: flex; flex-direction: column; gap: 12px;">
                     <div class="contact-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
-                        <span class="gold serif">WhatsApp: Chat Now</span>
-                        <a href="https://wa.me/27829241517" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 10px 25px; font-size: 10px;">Chat Now</a>
+                        <span class="gold serif">Speak to us on WhatsApp</span>
+                        <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 12px 30px; font-size: 11px; letter-spacing: 2px;">SEND MESSAGE</a>
+                        <span class="cta-subtext">For personal guidance or custom orders</span>
                     </div>
+
                     <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="contact-item">
                         <span class="gold serif">Instagram:</span> @euodia38
                     </a>
+                    <h3>+27 70 518 3949</h3>
+                    <p>Mon - Fri: 09:00 - 17:00</p>
                     <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="contact-item">
                         <span class="gold serif">Facebook:</span> Euodia Fragrant
                     </a>
@@ -133,5 +155,19 @@
     </footer>
 
     <script src="js/cart.js"></script>
+    <script>
+        // Simple Intersection Observer for Journey Steps
+        const observerOptions = { threshold: 0.25 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.journey-step').forEach(step => observer.observe(step));
+    </script>
 </body>
+
 </html>

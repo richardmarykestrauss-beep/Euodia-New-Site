@@ -12,13 +12,28 @@
 }
 
 body {
-    background-color: var(--dark-bg);
+    background: url('../images/bg/global-texture.jpg') fixed center/cover no-repeat;
+    background-color: #030303; /* Fallback for very dark texture */
     color: #f0f0f0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0;
     line-height: 1.6;
     overflow-x: hidden;
 }
+
+/* Cinematic Lighting Glow */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
 
 .serif {
     font-family: 'Cormorant Garamond', serif;
@@ -55,8 +70,18 @@ nav {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px; /* Slightly increased for premium feel */
+    flex: 1;
 }
+
+.nav-links:first-of-type {
+    justify-content: flex-start;
+}
+
+.nav-links:last-of-type {
+    justify-content: flex-end;
+}
+
 
 .nav-logo-img {
     height: 50px;
@@ -104,17 +129,22 @@ nav a:hover {
 
 /* Product Card */
 .product-card {
-    background: var(--charcoal);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     padding: 30px;
     text-align: center;
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.04);
 }
+
 
 .product-image-container {
     width: 100%;
@@ -210,8 +240,11 @@ nav a:hover {
 }
 
 .btn-primary:hover {
-    background: #fff;
+    background: #e5c158; /* Brighter, vibrant gold */
+    color: black;
+    box-shadow: 0 0 20px rgba(229, 193, 88, 0.25);
 }
+
 
 .btn-secondary {
     background: transparent;
@@ -220,9 +253,12 @@ nav a:hover {
 }
 
 .btn-secondary:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+    border-color: #e5c158;
+    color: #e5c158;
+    box-shadow: 0 0 15px rgba(229, 193, 88, 0.1);
 }
+
 
 /* Refined 'Added' State */
 .btn-added {
@@ -232,6 +268,20 @@ nav a:hover {
     letter-spacing: 4px !important;
     transition: all 0.3s ease;
 }
+
+.btn-enquire-luxury {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold);
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-enquire-luxury:hover {
+    background: rgba(212, 175, 55, 0.05);
+    border-color: var(--gold);
+}
+
 
 /* Detail Page */
 .product-detail-layout {
@@ -255,8 +305,69 @@ nav a:hover {
     font-size: 13px;
     font-style: italic;
     color: var(--text-muted);
-    margin: 15px 0;
+    margin: 15px 0 25px;
 }
+
+/* --- Premium Storytelling Sections --- */
+.story-divider {
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    margin: 45px 0 35px;
+}
+
+.ritual-section {
+    margin-top: 40px;
+}
+
+.ritual-title, .ingredients-title {
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.ritual-text {
+    font-size: 16px;
+    color: #999;
+    line-height: 1.9;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.ingredient-item {
+    text-align: left;
+}
+
+.ingredient-name {
+    display: block;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.ingredient-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .ingredients-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
 
 /* Sidebar / Summary Layouts */
 .cart-layout {
@@ -265,11 +376,46 @@ nav a:hover {
     gap: 60px;
 }
 
+/* --- Conversion Utility Classes --- */
+.micro-trust {
+    font-size: 11px;
+    color: rgba(212, 175, 55, 0.7);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    display: block;
+    font-weight: 400;
+}
+
+.scarcity-line {
+    font-size: 13px;
+    color: #bfa36a; /* Muted gold-bronze */
+    font-style: italic;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.context-line {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.cta-subtext {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
 .summary-box {
     background: var(--charcoal);
     border: 1px solid var(--border);
     padding: 30px;
 }
+
 
 .summary-row {
     display: flex;
@@ -327,8 +473,10 @@ nav a:hover {
 /* --- Hero Section (Refined) --- */
 .hero-section {
     min-height: 85vh;
-    background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%),
-                url('../images/bg/hero-full.jpg') center/cover no-repeat;
+    background: linear-gradient(to right, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0) 100%),
+                url('../images/bg/hero-stone.jpg') center/cover no-repeat;
+
+
     display: flex;
     align-items: center;
     position: relative;
@@ -346,8 +494,9 @@ nav a:hover {
 @media (max-width: 992px) {
     .hero-section {
         text-align: center;
-        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                    url('../images/bg/hero-full.jpg') center/cover no-repeat;
+        background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                    url('../images/bg/hero-stone.jpg') center/cover no-repeat;
+
         padding-top: 100px;
         padding-bottom: 60px;
         justify-content: center;
@@ -379,13 +528,16 @@ nav a:hover {
 
 .hero-subtitle {
     font-family: 'Inter', sans-serif;
-    font-size: 18px;
-    margin: 20px 0 35px;
+    font-size: 17px;
+    margin: 25px 0 45px;
     font-style: normal;
     font-weight: 300;
-    color: #dedede;
-    line-height: 1.6;
+    color: #999;
+    line-height: 1.7;
+    max-width: 600px;
+    opacity: 0.9;
 }
+
 
 .hero-btns {
     display: flex;
@@ -402,9 +554,11 @@ nav a:hover {
 }
 
 .btn-luxury:hover {
-    background: transparent;
-    color: var(--gold);
+    background: #e5c158;
+    color: black;
+    box-shadow: 0 0 20px rgba(229, 193, 88, 0.2);
 }
+
 
 .btn-luxury-outline {
     background: transparent;
@@ -420,15 +574,19 @@ nav a:hover {
 
 /* --- Compact Sections --- */
 .section-compact {
-    padding: 60px 0; /* Slashed padding from 80px */
-    background: #000;
+    padding: 100px 0;
+    background: transparent;
+    position: relative;
+    z-index: 2;
 }
 
 .section-focal {
-    padding: 50px 0; /* Reduced from 60px */
-    background: #000;
-    border-bottom: 1px solid var(--border);
+    padding: 120px 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent);
+    position: relative;
+    z-index: 2;
 }
+
 
 .focal-grid {
     display: grid;
@@ -443,8 +601,10 @@ nav a:hover {
 .focal-image img {
     max-width: 90%;
     height: auto;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
-    animation: floating 6s ease-in-out infinite;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 25px 25px rgba(0,0,0,0.95));
+    transform: translateY(15px); /* Grounds the bottle visually */
 }
 
 .focal-info .hebrew-title {
@@ -461,6 +621,89 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
+/* --- Euodia Journey Section --- */
+.journey-section {
+    padding: 120px 0;
+    text-align: center;
+}
+
+.journey-title {
+    margin-bottom: 80px;
+    font-size: clamp(32px, 5vw, 42px);
+    letter-spacing: 4px;
+}
+
+.journey-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    gap: 0;
+}
+
+.journey-step {
+    flex: 1;
+    padding: 0 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.journey-step.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-num {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.journey-step h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.journey-step p {
+    font-size: 16px;
+    color: #bbb;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.journey-divider {
+    width: 1px;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.3), transparent);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    margin-top: 40px;
+}
+
+@media (max-width: 992px) {
+    .journey-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+    }
+    .journey-step {
+        padding: 0;
+        max-width: 500px;
+    }
+    .journey-divider {
+        width: 150px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.3), transparent);
+        margin-top: 0;
+    }
+}
+
+
 /* --- Philosophy Cards --- */
 .philosophy-grid {
     display: flex;
@@ -472,11 +715,19 @@ nav a:hover {
 
 .phil-card {
     flex: 1;
-    background: #080808;
-    border: 1px solid var(--border);
-    padding: 35px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.08);
+    padding: 45px 35px;
     text-align: center;
+    transition: all 0.4s ease;
 }
+
+.phil-card:hover {
+    border-color: rgba(212, 175, 55, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+}
+
 
 .phil-card h3 {
     font-size: 20px;
@@ -493,16 +744,18 @@ nav a:hover {
 
 /* --- Compact Contact Block --- */
 .contact-block {
-    max-width: 850px;
-    margin: 0 auto;
-    padding: 50px 40px;
-    background: #080808;
-    border: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 50px;
-    align-items: flex-start;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
 }
+
 
 .contact-info {
     display: flex;
@@ -563,21 +816,23 @@ nav a:hover {
 }
 
 .qr-small img {
-    width: 173px; /* Enlarged by 15% from 150px */
+    width: 220px; /* Increased from 173px for better scannability */
     height: auto;
     border-radius: 12px;
     border: 1px solid var(--gold);
-    padding: 12px; /* Increased for better visual balance */
-    background: #000;
+    padding: 10px;
+    background: #fff; /* White background for better QR contrast */
+    box-shadow: 0 0 20px rgba(196, 164, 95, 0.2);
 }
 
 /* --- Connect Section --- */
 .connect-section {
-    padding: 100px 5%;
-    background: #050505;
-    border-top: 1px solid var(--border);
+    padding: 120px 5%;
+    background: transparent;
     position: relative;
+    z-index: 2;
 }
+
 
 .connect-grid {
     display: grid;
@@ -599,13 +854,17 @@ nav a:hover {
 }
 
 .qr-container {
-    width: 250px;
-    height: 250px;
+    width: 300px; /* Increased from 250px for better scannability */
+    height: 300px;
     margin: 0 auto 30px;
-    border: 1px solid var(--gold);
-    padding: 15px;
+    border: 2px solid var(--gold);
+    padding: 20px;
     border-radius: 15px;
-    background: #000;
+    background: #fff; /* White background for maximum QR contrast */
+    box-shadow: 0 0 30px rgba(196, 164, 95, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .qr-container img {
@@ -790,10 +1049,70 @@ nav a:hover {
     fill: currentColor;
 }
 
-.qr-title {
-    font-size: 28px;
+/* --- Collection Overviews & Labels --- */
+.status-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
     margin-bottom: 10px;
+    display: block;
 }
+
+.status-now { color: var(--gold); }
+.status-soon { color: var(--text-muted); opacity: 0.6; }
+
+.category-card {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    padding: 60px 40px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.category-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.02);
+}
+
+.category-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    color: #fff;
+    margin: 15px 0;
+    letter-spacing: 2px;
+}
+
+.category-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+.coming-soon-wrapper {
+    text-align: center;
+    padding: 120px 20px;
+}
+
+.coming-soon-wrapper h1 {
+    font-size: clamp(40px, 8vw, 72px);
+    margin-bottom: 20px;
+}
+
+.coming-soon-wrapper p {
+    font-size: 20px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
 
 .qr-subtitle {
     color: #ccc;
