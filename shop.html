@@ -11,118 +11,146 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">HOME</a>
-                <a href="shop.html">SHOP</a>
-                <a href="room-mists.html">ROOM MISTS</a>
-            </div>
-            
-            <a href="index.html" class="nav-logo">
-                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
-            </a>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-logo">
+            <img src="images/logo.png" alt="Euodia Logo">
+        </a>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html">HOME</a>
+            <a href="shop.html" class="active">SHOP</a>
+            <a href="room-mists.html">ROOM MISTS</a>
+            <a href="index.html#journey">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <div class="nav-divider"></div>
+            <a href="cart.html">CART (<span id="cart-counter">0</span>)</a>
+        </nav>
 
-            <div class="nav-links">
-                <a href="diffusers.html">DIFFUSERS</a>
-                <a href="exclusive-oils.html">EXCLUSIVE OILS</a>
-                <a href="#contact">CONTACT</a>
-                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
-            </div>
-
-
+        <div class="sidebar-social">
+            <a href="https://instagram.com/euodia38" target="_blank" aria-label="Instagram"><img src="images/icon-instagram.svg" alt="IG" style="width:16px;"></a>
+            <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="FB" style="width:16px;"></a>
+            <a href="#" target="_blank" aria-label="Twitter"><img src="images/icon-twitter.svg" alt="TW" style="width:16px;"></a>
         </div>
-    </nav>
+    </aside>
 
-    <div class="container">
-        <div class="collection-header">
-            <h1 class="serif gold">Our Collection</h1>
-            <p>Sacred Atmospheric Fragrances</p>
-        </div>
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="layout-main">
 
-        <!-- Section 1: Everyday Atmosphere -->
-        <h3 class="gold serif" style="margin-bottom: 30px; letter-spacing: 3px; font-weight: 400; text-align: center;">Everyday Atmosphere</h3>
-        <div class="product-grid" style="margin-bottom: 100px;">
-            <a href="room-mists.html" class="category-card">
-                <span class="status-label status-now">Available Now</span>
-                <h2>Room Mists</h2>
-                <p>Atmosphere, instantly refined. A gentle release into warmth and light.</p>
-            </a>
-            
-            <a href="diffusers.html" class="category-card">
-                <span class="status-label status-now">Available Now</span>
-                <h2>Diffusers</h2>
-                <p>Continuous fragrance for your space. Anchored in quiet reverence.</p>
-            </a>
-        </div>
-
-        <!-- Section 2: Sacred Blends -->
-        <h3 class="gold serif" style="margin-bottom: 30px; letter-spacing: 3px; font-weight: 400; text-align: center;">Sacred Blends</h3>
-        <div class="product-grid">
-            <a href="exclusive-oils.html" class="category-card" style="opacity: 0.8;">
-                <span class="status-label status-soon">Coming Soon</span>
-                <h2>Essential Oils</h2>
-                <p>The pure essence of botanicals. Our premium collection of handcrafted blends.</p>
-            </a>
-        </div>
+    <div class="collection-header">
+        <h1 class="serif gold">Our Collection</h1>
+        <p>Sacred Atmospheric Fragrances</p>
     </div>
 
-    <!-- Connect Section -->
-    <section id="contact" class="connect-section">
-        <div class="connect-grid">
-            <div class="whatsapp-card">
-                <div class="qr-container">
-                    <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+    <section class="section-intimate">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Room Mists Category -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/atmosphere/stone-texture.png" alt="Room Mists" style="opacity: 0.3; filter: grayscale(1);">
+                        <div class="light-ray" style="left: 20%; opacity: 0.2;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <h2 class="serif gold" style="font-size: 32px; letter-spacing: 10px;">ROOM MISTS</h2>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-type">Category</div>
+                        <h2 class="product-title">Everyday Atmosphere</h2>
+                        <div class="product-desc">Atmosphere, instantly refined. A gentle release into warmth and light, designed to shift the energy of any room in a single breath.</div>
+                        <a href="room-mists.html" class="btn btn-primary" style="margin-top: 30px;">EXPLORE MISTS</a>
+                    </div>
                 </div>
-                <h3 class="gold serif qr-title">SPEAK TO US ON WHATSAPP</h3>
-                <p class="qr-subtitle">For personal guidance or custom orders</p>
-                <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-primary btn-chat" style="letter-spacing: 2px;">SEND MESSAGE</a>
-            </div>
 
+                <!-- Diffusers Category -->
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/atmosphere/smoke-rays.png" alt="Diffusers" style="opacity: 0.3;">
+                        <div class="light-ray" style="left: 80%; opacity: 0.2;"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <h2 class="serif gold" style="font-size: 32px; letter-spacing: 10px;">DIFFUSERS</h2>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-type">Category</div>
+                        <h2 class="product-title">Enduring Stillness</h2>
+                        <div class="product-desc">Continuous fragrance for your space. Anchored in quiet reverence and lasting presence, our diffusers offer a steady unfolding of scent.</div>
+                        <a href="diffusers.html" class="btn btn-primary" style="margin-top: 30px;">EXPLORE DIFFUSERS</a>
+                    </div>
+                </div>
 
-            <div class="social-info">
-                <h2 class="gold serif social-heading">Connect With Us</h2>
-                <p class="social-subheading">Follow our journey and explore sacred fragrances.</p>
-
-                <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                <!-- Essential Oils Category -->
+                <div class="product-card" style="opacity: 0.6;">
+                    <div class="product-image-container">
+                        <img src="images/atmosphere/stone-texture.png" alt="Essential Oils" style="opacity: 0.1; filter: grayscale(1);">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <h2 class="serif" style="color: #444; font-size: 28px; letter-spacing: 5px;">SOON</h2>
+                        </div>
                     </div>
-                    <div class="social-content">
-                        <h3>Facebook</h3>
-                        <p>@Euodia Fragrant</p>
-                    </div>
-                </a>
-
-                <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    </div>
-                    <div class="social-content">
-                        <h3>Instagram</h3>
-                        <p>@euodia38</p>
-                    </div>
-                </a>
-
-                <div class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    </div>
-                    <div class="social-content">
-                        <h3>Email</h3>
-                        <p>euodia.fragrant@gmail.com</p>
+                    <div class="product-info">
+                        <div class="product-type">Coming Soon</div>
+                        <h2 class="product-title">Sacred Blends</h2>
+                        <div class="product-desc">The pure essence of botanicals. Our upcoming premium collection of handcrafted essential oils, inspired by ancient wisdom.</div>
+                        <span class="btn btn-secondary" style="margin-top: 30px; cursor: default;">WAITLIST OPENING SOON</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 40px 0; border-top: 1px solid var(--border); text-align: center;">
-        <img src="images/logo.png" alt="Euodia Logo" style="height: 40px; margin-bottom: 20px;">
-        <p style="font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">
+    <!-- Connect Section -->
+    <section id="contact" class="section-compact">
+        <div class="contact-block">
+            <div class="contact-info">
+                <h2 class="gold serif">Connect With Euodia</h2>
+                <p>Order directly or follow our fragrance journey.</p>
+                
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span class="label">WhatsApp</span>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 12px 30px; font-size: 11px; letter-spacing: 2px;">SEND MESSAGE</a>
+                            <span class="cta-subtext" style="text-align: left;">For personal guidance or custom orders</span>
+                        </div>
+                    </div>
+
+                    <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="contact-item">
+                        <span class="label">Instagram</span>
+                        <span>@euodia38</span>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="contact-item">
+                        <span class="label">Facebook</span>
+                        <span>Euodia Fragrant</span>
+                    </a>
+
+                    <div class="contact-item">
+                        <span class="label">Email</span>
+                        <span>euodia.fragrant@gmail.com</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="label">Hours</span>
+                        <span>Mon - Fri: 09:00 - 17:00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="qr-small">
+                <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+                <p>SCAN TO CHAT</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <img src="images/logo.png" alt="Euodia Logo" class="site-footer-logo">
+        <p class="site-footer-copy">
             © 2026 EUODIA FRAGRANCE HOUSE. ALL RIGHTS RESERVED.
         </p>
     </footer>
+
+    </main>
 
     <script src="js/cart.js"></script>
 </body>

@@ -59,33 +59,41 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">HOME</a>
-                <a href="shop.html">SHOP</a>
-                <a href="room-mists.html">ROOM MISTS</a>
-            </div>
-            
-            <a href="index.html" class="nav-logo">
-                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
-            </a>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-logo">
+            <img src="images/logo.png" alt="Euodia Logo">
+        </a>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html">HOME</a>
+            <a href="shop.html">SHOP</a>
+            <a href="room-mists.html">ROOM MISTS</a>
+            <a href="index.html#journey">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <div class="nav-divider"></div>
+            <a href="cart.html">CART (<span id="cart-counter">0</span>)</a>
+        </nav>
 
-            <div class="nav-links">
-                <a href="diffusers.html">DIFFUSERS</a>
-                <a href="exclusive-oils.html">EXCLUSIVE OILS</a>
-                <a href="#contact">CONTACT</a>
-                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
-            </div>
+        <div class="sidebar-social">
+            <a href="https://instagram.com/euodia38" target="_blank" aria-label="Instagram"><img src="images/icon-instagram.svg" alt="IG" style="width:16px;"></a>
+            <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="FB" style="width:16px;"></a>
+            <a href="#" target="_blank" aria-label="Twitter"><img src="images/icon-twitter.svg" alt="TW" style="width:16px;"></a>
         </div>
-    </nav>
+    </aside>
 
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="layout-main">
 
+    <div class="collection-header">
+        <h1 class="serif gold">Checkout</h1>
+        <p>Complete your sacred fragrance journey.</p>
+    </div>
 
     <div class="container cart-layout">
         <!-- Form Area -->
         <div>
-            <h1 class="serif gold" style="font-size: 32px; margin-bottom: 30px;">Shipping Information</h1>
+            <h2 class="serif gold" style="font-size: 28px; margin-bottom: 30px; letter-spacing: 2px; text-transform: uppercase;">Shipping Information</h2>
             <form id="checkout-form" class="form-section">
                 <div class="form-group full-width">
                     <label>Full Name</label>
@@ -144,22 +152,76 @@
             </div>
             <div class="summary-row">
                 <span>Shipping</span>
-                <span id="summary-shipping">R140</span>
+                <span id="summary-shipping">R100</span>
             </div>
             <div class="summary-row summary-total" style="font-size: 24px;">
                 <span>Total</span>
-                <span id="summary-total">R140</span>
+                <span id="summary-total">R100</span>
             </div>
             
-            <button type="button" onclick="window.location.href='payment.html'" class="btn btn-primary" style="width: 100%; margin-top: 30px;">CONTINUE TO PAYMENT</button>
+            <button type="button" onclick="handleContinueToPayment()" class="btn btn-primary" style="width: 100%; margin-top: 30px;">CONTINUE TO PAYMENT</button>
             <a href="cart.html" class="btn btn-secondary" style="width: 100%; margin-top: 15px; text-align: center;">BACK TO CART</a>
         </div>
     </div>
+
+    <!-- Connect Section -->
+    <section id="contact" class="section-compact">
+        <div class="contact-block">
+            <div class="contact-info">
+                <h2 class="gold serif">Connect With Euodia</h2>
+                <p>Order directly or follow our fragrance journey.</p>
+                
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span class="label">WhatsApp</span>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 12px 30px; font-size: 11px; letter-spacing: 2px;">SEND MESSAGE</a>
+                            <span class="cta-subtext" style="text-align: left;">For personal guidance or custom orders</span>
+                        </div>
+                    </div>
+
+                    <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="contact-item">
+                        <span class="label">Instagram</span>
+                        <span>@euodia38</span>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="contact-item">
+                        <span class="label">Facebook</span>
+                        <span>Euodia Fragrant</span>
+                    </a>
+
+                    <div class="contact-item">
+                        <span class="label">Email</span>
+                        <span>euodia.fragrant@gmail.com</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="label">Hours</span>
+                        <span>Mon - Fri: 09:00 - 17:00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="qr-small">
+                <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+                <p>SCAN TO CHAT</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <img src="images/logo.png" alt="Euodia Logo" class="site-footer-logo">
+        <p class="site-footer-copy">
+            © 2026 EUODIA FRAGRANCE HOUSE. ALL RIGHTS RESERVED.
+        </p>
+    </footer>
 
     <script src="js/cart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const itemsContainer = document.getElementById('checkout-items');
+            const checkoutForm = document.getElementById('checkout-form');
+
             if (euodiaCart.items.length === 0) {
                 window.location.href = 'cart.html';
                 return;
@@ -176,9 +238,29 @@
 
             const totals = euodiaCart.getTotals();
             document.getElementById('summary-subtotal').textContent = `R${totals.subtotal}`;
-            document.getElementById('summary-shipping').textContent = `R${totals.shipping}`;
+            document.getElementById('summary-shipping').textContent = totals.shipping === 0 ? 'FREE' : `R${totals.shipping}`;
             document.getElementById('summary-total').textContent = `R${totals.total}`;
+            
+            if (totals.shipping === 0) {
+                document.getElementById('summary-shipping').classList.add('gold');
+            }
+
+            // Handle "Continue to Payment"
+            window.handleContinueToPayment = () => {
+                const emailInput = checkoutForm.querySelector('input[type="email"]');
+                const fullNameInput = checkoutForm.querySelector('input[placeholder="First and last name"]');
+                
+                if (checkoutForm.checkValidity()) {
+                    localStorage.setItem('euodia_customer_email', emailInput.value);
+                    localStorage.setItem('euodia_customer_name', fullNameInput.value);
+                    window.location.href = 'payment.html';
+                } else {
+                    checkoutForm.reportValidity();
+                }
+            };
         });
     </script>
+    </main>
+
 </body>
 </html>

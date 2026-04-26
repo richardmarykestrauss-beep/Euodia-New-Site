@@ -11,33 +11,38 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html">HOME</a>
-                <a href="shop.html">SHOP</a>
-                <a href="room-mists.html">ROOM MISTS</a>
-            </div>
-            
-            <a href="index.html" class="nav-logo">
-                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
-            </a>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-logo">
+            <img src="images/logo.png" alt="Euodia Logo">
+        </a>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html">HOME</a>
+            <a href="shop.html">SHOP</a>
+            <a href="room-mists.html">ROOM MISTS</a>
+            <a href="index.html#journey">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <div class="nav-divider"></div>
+            <a href="cart.html">CART (<span id="cart-counter">0</span>)</a>
+        </nav>
 
-            <div class="nav-links">
-                <a href="diffusers.html">DIFFUSERS</a>
-                <a href="exclusive-oils.html">EXCLUSIVE OILS</a>
-                <a href="#contact">CONTACT</a>
-                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
-            </div>
+        <div class="sidebar-social">
+            <a href="https://instagram.com/euodia38" target="_blank" aria-label="Instagram"><img src="images/icon-instagram.svg" alt="IG" style="width:16px;"></a>
+            <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="FB" style="width:16px;"></a>
+            <a href="#" target="_blank" aria-label="Twitter"><img src="images/icon-twitter.svg" alt="TW" style="width:16px;"></a>
         </div>
-    </nav>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="layout-main">
 
     <div class="collection-header">
         <h1 class="serif gold">Diffusers</h1>
         <p>Continuous fragrance for your space.</p>
     </div>
 
-    <div class="container" style="padding-top: 0;">
+    <div class="container">
         <div class="product-grid">
             <!-- Covenant Diffuser -->
             <div class="product-card" id="card-covenant">
@@ -46,7 +51,14 @@
                 </div>
                 <div class="product-type">Reed Diffuser</div>
                 <h2 class="product-title">Covenant</h2>
-                <div class="product-desc">A sacred, grounding blend. Designed to anchor the atmosphere in quiet reverence. Cedarwood, Cypress, and Frankincense.</div>
+                <div class="product-desc">
+                    A sacred, grounding fragrance —<br>
+                    formed from the ancient woods of cedar,<br>
+                    the stillness of cypress,<br>
+                    and the rising breath of frankincense.<br><br>
+                    Created to anchor the atmosphere<br>
+                    in quiet reverence.
+                </div>
                 
                 <div class="product-controls">
                     <div class="summary-row">
@@ -69,61 +81,58 @@
     </div>
 
     <!-- Connect Section -->
-    <section id="contact" class="connect-section">
-        <div class="connect-grid">
-            <div class="whatsapp-card">
-                <div class="qr-container">
-                    <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+    <section id="contact" class="section-compact">
+        <div class="contact-block">
+            <div class="contact-info">
+                <h2 class="gold serif">Connect With Euodia</h2>
+                <p>Order directly or follow our fragrance journey.</p>
+                
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span class="label">WhatsApp</span>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 12px 30px; font-size: 11px; letter-spacing: 2px;">SEND MESSAGE</a>
+                            <span class="cta-subtext" style="text-align: left;">For personal guidance or custom orders</span>
+                        </div>
+                    </div>
+
+                    <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="contact-item">
+                        <span class="label">Instagram</span>
+                        <span>@euodia38</span>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="contact-item">
+                        <span class="label">Facebook</span>
+                        <span>Euodia Fragrant</span>
+                    </a>
+
+                    <div class="contact-item">
+                        <span class="label">Email</span>
+                        <span>euodia.fragrant@gmail.com</span>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="label">Hours</span>
+                        <span>Mon - Fri: 09:00 - 17:00</span>
+                    </div>
                 </div>
-                <h3 class="gold serif qr-title">SPEAK TO US ON WHATSAPP</h3>
-                <p class="qr-subtitle">For personal guidance or custom orders</p>
-                <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-primary btn-chat" style="letter-spacing: 2px;">SEND MESSAGE</a>
             </div>
-
-
-            <div class="social-info">
-                <h2 class="gold serif social-heading">Connect With Us</h2>
-                <p class="social-subheading">Follow our journey and explore sacred fragrances.</p>
-
-                <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    </div>
-                    <div class="social-content">
-                        <h3>Facebook</h3>
-                        <p>@Euodia Fragrant</p>
-                    </div>
-                </a>
-
-                <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    </div>
-                    <div class="social-content">
-                        <h3>Instagram</h3>
-                        <p>@euodia38</p>
-                    </div>
-                </a>
-
-                <div class="social-item">
-                    <div class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    </div>
-                    <div class="social-content">
-                        <h3>Email</h3>
-                        <p>euodia.fragrant@gmail.com</p>
-                    </div>
-                </div>
+            
+            <div class="qr-small">
+                <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
+                <p>SCAN TO CHAT</p>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 40px 0; border-top: 1px solid var(--border); text-align: center;">
-        <img src="images/logo.png" alt="Euodia Logo" style="height: 40px; margin-bottom: 20px;">
-        <p style="font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">
+    <footer class="site-footer">
+        <img src="images/logo.png" alt="Euodia Logo" class="site-footer-logo">
+        <p class="site-footer-copy">
             © 2026 EUODIA FRAGRANCE HOUSE. ALL RIGHTS RESERVED.
         </p>
     </footer>
+
+    </main>
 
     <script src="js/cart.js"></script>
 </body>

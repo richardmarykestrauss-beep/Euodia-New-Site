@@ -149,12 +149,19 @@ class Cart {
 
     getTotals() {
         const subtotal = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        // LOCKED: Constant R140 shipping if there are items in the cart
-        const shipping = subtotal > 0 ? 140 : 0;
+        const shippingThreshold = 1500;
+        const flatRate = 100;
+        
+        let shipping = 0;
+        if (subtotal > 0) {
+            shipping = subtotal >= shippingThreshold ? 0 : flatRate;
+        }
+        
         return {
             subtotal,
             shipping,
-            total: subtotal + shipping
+            total: subtotal + shipping,
+            isFreeShipping: subtotal >= shippingThreshold && subtotal > 0
         };
     }
 }
