@@ -21,8 +21,7 @@ const PRICES = {
     'pear': { '100ml': 130, '200ml': 180 }
 };
 
-const SHIPPING_FLAT_RATE = 100;
-const SHIPPING_THRESHOLD = 1500;
+const SHIPPING_FLAT_RATE = 140;
 
 // Create Payment Intent Endpoint
 app.post('/create-payment-intent', async (req, res) => {

@@ -8,151 +8,166 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/ecom.css?v=2">
+    <style>
+        /* Navbar overlap fix for homepage */
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- SIDEBAR NAVIGATION -->
-    <aside class="sidebar">
-        <a href="index.html" class="sidebar-logo">
-            <img src="images/logo.png" alt="Euodia Logo">
-        </a>
-        
-        <nav class="sidebar-nav">
-            <a href="index.html" class="active">HOME</a>
-            <a href="shop.html">SHOP</a>
-            <a href="room-mists.html">ROOM MISTS</a>
-            <a href="index.html#journey">ABOUT</a>
-            <a href="#contact">CONTACT</a>
-            <div class="nav-divider"></div>
-            <a href="cart.html">CART (<span id="cart-counter">0</span>)</a>
-        </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">HOME</a>
+                <a href="shop.html">SHOP</a>
+                <a href="room-mists.html">ROOM MISTS</a>
+            </div>
+            
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.png" alt="Euodia Logo" class="nav-logo-img">
+            </a>
 
-        <div class="sidebar-social">
-            <a href="https://instagram.com/euodia38" target="_blank" aria-label="Instagram"><img src="images/icon-instagram.svg" alt="IG" style="width:16px;"></a>
-            <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" aria-label="Facebook"><img src="images/icon-facebook.svg" alt="FB" style="width:16px;"></a>
-            <a href="#" target="_blank" aria-label="Twitter"><img src="images/icon-twitter.svg" alt="TW" style="width:16px;"></a>
+            <div class="nav-links">
+                <a href="diffusers.html">DIFFUSERS</a>
+                <a href="exclusive-oils.html">EXCLUSIVE OILS</a>
+                <a href="#contact">CONTACT</a>
+                <a href="cart.html">CART <span id="cart-counter" class="cart-count">0</span></a>
+            </div>
         </div>
-    </aside>
+    </nav>
 
-    <!-- MAIN CONTENT WRAPPER -->
-    <main class="layout-main">
+
 
     <!-- 1. HERO SECTION -->
-    <section class="hero-split section-intimate">
-        <div class="hero-text-col">
-            <span class="hero-label">SACRED FRAGRANCE OILS</span>
-            <h1 class="hero-title gold serif gold-glow">Sacred Fragrance<br>for Atmosphere<br>& Presence</h1>
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <span class="hero-label">Sacred Fragrance Oils</span>
+            <h1 class="hero-title gold serif">Sacred Fragrance for Atmosphere & Presence</h1>
             <p class="hero-subtitle">Premium diffuser oils inspired by ancient botanicals, crafted to transform your space with intention and depth.</p>
             <div class="hero-btns">
-                <a href="#covenant" class="btn btn-luxury">SHOP COVENANT</a>
-                <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury-outline">CHAT ON WHATSAPP</a>
-            </div>
-        </div>
-        <div class="hero-image-col">
-            <img src="images/covenant-bottle.png?v=2" alt="Covenant Reed Diffuser" class="hero-bottle">
-            <div class="light-ray" style="left: 60%; transform: rotate(-20deg);"></div>
-            <div class="light-ray" style="left: 40%; transform: rotate(-10deg); opacity: 0.3;"></div>
-        </div>
-    </section>
-
-    <!-- STORY ACCENT: SPICES -->
-    <div class="accent-spices"></div>
-
-    <!-- 2. MEANING 3-COLUMN GRID -->
-    <section class="meaning-grid-section section-intimate" style="border-top: 1px solid rgba(212, 175, 55, 0.05);">
-        <div class="meaning-grid">
-            <div class="grid-col col-left">
-                <h2 class="gold serif" style="font-size: 11px; letter-spacing: 5px; text-transform: uppercase;">The Essence</h2>
-                <p>Inspired by sacred fragrance traditions, Euodia blends atmosphere, depth, and intention into every space. A journey through ancient aromas designed for your presence.</p>
-            </div>
-            <div class="grid-col col-center">
-                <h2 class="serif statement-text">
-                    <span class="white-text" style="letter-spacing: 2px;">Not all fragrance<br>fills a room.</span><br>
-                    <span class="gold-italic gold-glow" style="font-size: 38px; margin-top: 20px;">Some shift it.</span>
-                </h2>
-            </div>
-            <div class="grid-col col-right">
-                <h3 class="gold serif collection-title" style="font-size: 14px; letter-spacing: 4px;">Song of Songs Collection</h3>
-                <span class="coming-soon-label" style="border-top: none; color: #777;">COMING SOON</span>
+                <a href="#covenant" class="btn btn-luxury">Shop Covenant</a>
+                <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury-outline">Chat on WhatsApp</a>
             </div>
         </div>
     </section>
 
-    <div class="stone-surface-divider"></div>
+    <!-- 2. FEATURED PRODUCT (COVENANT) -->
+    <section id="covenant" class="section-focal">
+        <div class="focal-grid">
+            <div class="focal-image">
+                <img src="images/covenant-bottle.png?v=2" alt="Covenant Reed Diffuser">
+            </div>
+            <div class="focal-info">
+                <h2 class="hebrew-title gold serif">בְּרִית</h2>
+                <span class="focal-subtitle gold serif">COVENANT</span>
+                <p class="covenant-desc">A sacred, grounding blend. Designed to anchor the atmosphere in quiet reverence.</p>
+                <div class="note-line" style="margin-bottom: 25px; font-size: 13px; color: var(--gold); letter-spacing: 2px; font-family: 'Cormorant Garamond', serif;">
+                    Notes<br>
+                    <span style="font-size: 15px; color: #ccc; letter-spacing: 1px; text-transform: none;">Cedarwood · Cypress · Frankincense</span>
+                </div>
+                <a href="#contact" class="btn btn-luxury">Order Now</a>
+            </div>
+        </div>
+    </section>
 
-    <!-- 3. JOURNEY GRID -->
-    <section id="journey" class="journey-grid-section section-intimate" style="border-top: 1px solid rgba(212, 175, 55, 0.05);">
-        <div class="journey-grid">
-            <div class="journey-col journey-left">
-                <h2 class="gold serif" style="font-size: clamp(32px, 3vw, 48px);">The Journey<br>of Euodia</h2>
-            </div>
-            <div class="journey-col journey-center">
-                <p style="font-style: italic; opacity: 0.9;">"From ancient resins to modern ritual, each fragrance carries a story of stillness, of depth, of presence."</p>
-                <p style="margin-top: 25px;">This is not scent alone. This is atmosphere.</p>
-            </div>
-            <div class="journey-col journey-right" style="position: relative; overflow: hidden;">
-                <div class="incense-img-placeholder" style="background: url('images/atmosphere/incense-smoke.png') center/cover; opacity: 0.4;"></div>
-                <div class="light-ray"></div>
+    <!-- 3. BRAND STORY SECTION -->
+    <section class="section-compact" style="text-align: center;">
+
+        <div style="max-width: 700px; margin: 0 auto; padding: 0 40px;">
+            <h2 class="gold serif" style="font-size: 32px; margin-bottom: 25px;">The Meaning of Euodia</h2>
+            <p style="font-size: 18px; line-height: 1.8; color: #ccc; font-weight: 300;">
+                Inspired by sacred fragrance traditions, Euodia blends atmosphere, depth, and intention into every space. A journey through ancient aromas designed for your presence.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. THE JOURNEY OF EUODIA -->
+    <section class="section-compact journey-section">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="journey-title gold serif">The Journey of Euodia</h2>
+            <div class="journey-grid">
+                <div class="journey-step">
+                    <span class="step-num gold">STEP 1</span>
+                    <h3 class="serif gold">Atmosphere</h3>
+                    <p>Every space carries a presence. Euodia begins by shaping the unseen — the atmosphere around you.</p>
+                </div>
+                <div class="journey-divider"></div>
+                <div class="journey-step">
+                    <span class="step-num gold">STEP 2</span>
+                    <h3 class="serif gold">Intention</h3>
+                    <p>Each fragrance is crafted with purpose. Not just to scent a room, but to anchor a moment.</p>
+                </div>
+                <div class="journey-divider"></div>
+                <div class="journey-step">
+                    <span class="step-num gold">STEP 3</span>
+                    <h3 class="serif gold">Presence</h3>
+                    <p>What fills the air, fills the experience. Euodia transforms space into stillness, clarity, and depth.</p>
+                </div>
             </div>
         </div>
     </section>
 
 
-    <!-- 5. CONNECT SECTION -->
+    <!-- 5. CONTACT / CTA SECTION -->
     <section id="contact" class="section-compact">
         <div class="contact-block">
             <div class="contact-info">
-                <h2 class="gold serif">Connect With Euodia</h2>
-                <p>Order directly or follow our fragrance journey.</p>
+                <h2 class="gold serif" style="font-size: 38px; margin: 0;">Connect With Euodia</h2>
+                <p style="color: #ccc; margin-bottom: 10px;">Order directly or follow our fragrance journey.</p>
                 
-                <div class="contact-list">
-                    <div class="contact-item">
-                        <span class="label">WhatsApp</span>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 12px 30px; font-size: 11px; letter-spacing: 2px;">SEND MESSAGE</a>
-                            <span class="cta-subtext" style="text-align: left;">For personal guidance or custom orders</span>
-                        </div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="contact-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                        <span class="gold serif">Speak to us on WhatsApp</span>
+                        <a href="https://wa.me/27705183949" target="_blank" rel="noopener" class="btn btn-luxury" style="padding: 12px 30px; font-size: 11px; letter-spacing: 2px;">SEND MESSAGE</a>
+                        <span class="cta-subtext">For personal guidance or custom orders</span>
                     </div>
 
                     <a href="https://instagram.com/euodia38" target="_blank" rel="noopener" class="contact-item">
-                        <span class="label">Instagram</span>
-                        <span>@euodia38</span>
+                        <span class="gold serif">Instagram:</span> @euodia38
                     </a>
-                    
+                    <h3>+27 70 518 3949</h3>
+                    <p>Mon - Fri: 09:00 - 17:00</p>
                     <a href="https://www.facebook.com/profile.php?id=6158195259624" target="_blank" rel="noopener" class="contact-item">
-                        <span class="label">Facebook</span>
-                        <span>Euodia Fragrant</span>
+                        <span class="gold serif">Facebook:</span> Euodia Fragrant
                     </a>
-
                     <div class="contact-item">
-                        <span class="label">Email</span>
-                        <span>euodia.fragrant@gmail.com</span>
-                    </div>
-
-                    <div class="contact-item">
-                        <span class="label">Hours</span>
-                        <span>Mon - Fri: 09:00 - 17:00</span>
+                        <span class="gold serif">Email:</span> euodia.fragrant@gmail.com
                     </div>
                 </div>
             </div>
             
             <div class="qr-small">
                 <img src="images/whatsapp-qr.png" alt="WhatsApp QR Code">
-                <p>SCAN TO CHAT</p>
+                <p style="margin-top: 15px; font-size: 12px; letter-spacing: 1px; color: var(--text-muted);">SCAN TO CHAT</p>
             </div>
         </div>
     </section>
 
     <!-- 6. FOOTER -->
-    <footer class="site-footer">
-        <img src="images/logo.png" alt="Euodia Logo" class="site-footer-logo">
-        <p class="site-footer-copy">
+    <footer style="padding: 40px 0; border-top: 1px solid var(--border); text-align: center;">
+        <img src="images/logo.png" alt="Euodia Logo" style="height: 40px; margin-bottom: 20px;">
+        <p style="font-size: 11px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">
             © 2026 EUODIA FRAGRANCE HOUSE. ALL RIGHTS RESERVED.
         </p>
     </footer>
 
-    </main>
-
     <script src="js/cart.js"></script>
+    <script>
+        // Simple Intersection Observer for Journey Steps
+        const observerOptions = { threshold: 0.25 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.journey-step').forEach(step => observer.observe(step));
+    </script>
 </body>
+
 </html>
