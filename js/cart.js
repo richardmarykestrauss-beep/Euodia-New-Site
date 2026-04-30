@@ -147,21 +147,25 @@ class Cart {
         }
     }
 
-    getTotals() {
+    getTotals(shippingMethod = 'delivery') {
         const subtotal = this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         const shippingThreshold = 1500;
         const flatRate = 100;
         
         let shipping = 0;
         if (subtotal > 0) {
-            shipping = subtotal >= shippingThreshold ? 0 : flatRate;
+            if (shippingMethod === 'collection') {
+                shipping = 0;
+            } else {
+                shipping = subtotal >= shippingThreshold ? 0 : flatRate;
+            }
         }
         
         return {
             subtotal,
             shipping,
             total: subtotal + shipping,
-            isFreeShipping: subtotal >= shippingThreshold && subtotal > 0
+            isFreeShipping: (subtotal >= shippingThreshold && subtotal > 0) || shippingMethod === 'collection'
         };
     }
 }

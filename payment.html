@@ -114,7 +114,9 @@
                 return;
             }
 
-            const totals = euodiaCart.getTotals();
+            const orderData = JSON.parse(localStorage.getItem('euodia_order_details') || '{}');
+            const totals = euodiaCart.getTotals(orderData.shippingMethod || 'delivery');
+            
             document.getElementById('payment-total').textContent = `R${totals.total}`;
             document.getElementById('btn-total').textContent = `— R${totals.total}`;
         }
@@ -122,18 +124,23 @@
         function payWithPaystack() {
             const btn = document.getElementById('pay-btn');
             const messageContainer = document.getElementById('payment-message');
-            const totals = euodiaCart.getTotals();
             
-            // Get data from localStorage saved in checkout.html
-            const customerEmail = localStorage.getItem('euodia_customer_email') || 'customer@euodia.co.za';
-            const customerName = localStorage.getItem('euodia_customer_name') || 'Guest';
+            // Get data from localStorage
+            const orderData = JSON.parse(localStorage.getItem('euodia_order_details') || '{}');
+            const totals = euodiaCart.getTotals(orderData.shippingMethod || 'delivery');
+            const cartItems = euodiaCart.items;
+
+            if (!orderData.email) {
+                window.location.href = 'checkout.html';
+                return;
+            }
 
             btn.disabled = true;
             btn.textContent = "INITIALIZING...";
 
             const handler = PaystackPop.setup({
                 key: paystackPublicKey,
-                email: customerEmail,
+                email: orderData.email,
                 amount: totals.total * 100, // Paystack expects amount in cents
                 currency: 'ZAR',
                 ref: 'EUO-' + Math.floor((Math.random() * 1000000000) + 1),
@@ -142,14 +149,39 @@
                         {
                             display_name: "Customer Name",
                             variable_name: "customer_name",
-                            value: customerName
+                            value: orderData.name
+                        },
+                        {
+                            display_name: "Phone Number",
+                            variable_name: "customer_phone",
+                            value: orderData.phone
+                        },
+                        {
+                            display_name: "Shipping Address",
+                            variable_name: "shipping_address",
+                            value: `${orderData.address}${orderData.apartment ? ', ' + orderData.apartment : ''}, ${orderData.city}, ${orderData.province}, ${orderData.postalCode}`
+                        },
+                        {
+                            display_name: "Shipping Method",
+                            variable_name: "shipping_method",
+                            value: orderData.shippingMethod === 'collection' ? 'Collection (Free)' : 'Courier Delivery'
+                        },
+                        {
+                            display_name: "Order Items",
+                            variable_name: "order_items",
+                            value: cartItems.map(item => `${item.quantity}x ${item.name} (${item.size})`).join('; ')
                         }
-                    ]
+                    ],
+                    // Additional hidden metadata for backend processing
+                    order_details: orderData,
+                    cart_items: cartItems,
+                    totals: totals
                 },
                 callback: function(response) {
                     // Payment successful
                     localStorage.removeItem('euodia_cart');
-                    window.location.href = 'index.html?payment=success';
+                    localStorage.removeItem('euodia_order_details');
+                    window.location.href = 'index.html?payment=success&ref=' + response.reference;
                 },
                 onClose: function() {
                     btn.disabled = false;
@@ -196,6 +228,11 @@
                     </div>
 
                     <div class="contact-item">
+                        <span class="label">Address</span>
+                        <span>12 Cromwell St, Midstream Estate</span>
+                    </div>
+
+                    <div class="contact-item">
                         <span class="label">Hours</span>
                         <span>Mon - Fri: 09:00 - 17:00</span>
                     </div>
@@ -211,6 +248,9 @@
 
     <footer class="site-footer">
         <img src="images/logo.png" alt="Euodia Logo" class="site-footer-logo">
+        <div style="margin-bottom: 15px;">
+            <a href="policy.html" style="color: var(--gold); font-size: 11px; letter-spacing: 1px; text-decoration: none; margin: 0 15px;">RETURN POLICY</a>
+        </div>
         <p class="site-footer-copy">
             © 2026 EUODIA FRAGRANCE HOUSE. ALL RIGHTS RESERVED.
         </p>

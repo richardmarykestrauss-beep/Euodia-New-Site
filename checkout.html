@@ -95,45 +95,59 @@
             <form id="checkout-form" class="form-section">
                 <div class="form-group full-width">
                     <label>Full Name</label>
-                    <input type="text" placeholder="First and last name" required>
+                    <input type="text" id="checkout-name" placeholder="First and last name" required>
                 </div>
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" placeholder="email@example.com" required>
+                    <input type="email" id="checkout-email" placeholder="email@example.com" required>
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="082 123 4567" required>
+                    <input type="tel" id="checkout-phone" placeholder="082 123 4567" required>
                 </div>
                 <div class="form-group full-width">
                     <label>Street Address</label>
-                    <input type="text" placeholder="House number and street name" required>
+                    <input type="text" id="checkout-address" placeholder="House number and street name" required>
                 </div>
                 <div class="form-group">
                     <label>Apartment / Unit / Suite</label>
-                    <input type="text" placeholder="Optional">
+                    <input type="text" id="checkout-apartment" placeholder="Optional">
                 </div>
                 <div class="form-group">
                     <label>City</label>
-                    <input type="text" required>
+                    <input type="text" id="checkout-city" required>
                 </div>
                 <div class="form-group">
                     <label>Province</label>
-                    <input type="text" required>
+                    <input type="text" id="checkout-province" required>
                 </div>
                 <div class="form-group">
                     <label>Postal Code</label>
-                    <input type="text" required>
+                    <input type="text" id="checkout-postal" required>
                 </div>
                 <div class="form-group full-width">
                     <label>Country</label>
-                    <select required>
+                    <select id="checkout-country" required>
                         <option value="ZA">South Africa</option>
                     </select>
                 </div>
                 <div class="form-group full-width">
                     <label>Order Notes (Optional)</label>
-                    <textarea rows="4" placeholder="Notes about your order, e.g. special instructions for delivery."></textarea>
+                    <textarea id="checkout-notes" rows="4" placeholder="Notes about your order, e.g. special instructions for delivery."></textarea>
+                </div>
+
+                <div class="form-group full-width" style="margin-top: 20px;">
+                    <h3 class="serif gold" style="font-size: 18px; margin-bottom: 15px; letter-spacing: 1px;">Shipping Method</h3>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="radio" name="shipping-method" value="delivery" checked style="width: auto;">
+                            <span>Courier Delivery (R100 / Free over R1,500)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="radio" name="shipping-method" value="collection" style="width: auto;">
+                            <span>Collection (Free)</span>
+                        </label>
+                    </div>
                 </div>
             </form>
         </div>
@@ -156,6 +170,10 @@
                 <span>Total</span>
                 <span id="summary-total">R100</span>
             </div>
+
+            <p style="font-size: 11px; color: #888; margin-top: 20px; line-height: 1.6;">
+                By continuing, you agree to our <a href="policy.html" target="_blank" style="color: var(--gold); text-decoration: underline;">Return Policy</a>.
+            </p>
             
             <button type="button" onclick="handleContinueToPayment()" class="btn btn-primary" style="width: 100%; margin-top: 30px;">CONTINUE TO PAYMENT</button>
             <a href="cart.html" class="btn btn-secondary" style="width: 100%; margin-top: 15px; text-align: center;">BACK TO CART</a>
@@ -194,6 +212,11 @@
                     </div>
 
                     <div class="contact-item">
+                        <span class="label">Address</span>
+                        <span>12 Cromwell St, Midstream Estate</span>
+                    </div>
+
+                    <div class="contact-item">
                         <span class="label">Hours</span>
                         <span>Mon - Fri: 09:00 - 17:00</span>
                     </div>
@@ -209,6 +232,9 @@
 
     <footer class="site-footer">
         <img src="images/logo.png" alt="Euodia Logo" class="site-footer-logo">
+        <div style="margin-bottom: 15px;">
+            <a href="policy.html" style="color: var(--gold); font-size: 11px; letter-spacing: 1px; text-decoration: none; margin: 0 15px;">RETURN POLICY</a>
+        </div>
         <p class="site-footer-copy">
             © 2026 EUODIA FRAGRANCE HOUSE. ALL RIGHTS RESERVED.
         </p>
@@ -243,14 +269,40 @@
                 document.getElementById('summary-shipping').classList.add('gold');
             }
 
+            // Update summary when shipping method changes
+            document.querySelectorAll('input[name="shipping-method"]').forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const method = radio.value;
+                    const newTotals = euodiaCart.getTotals(method);
+                    document.getElementById('summary-shipping').textContent = newTotals.shipping === 0 ? 'FREE' : `R${newTotals.shipping}`;
+                    document.getElementById('summary-total').textContent = `R${newTotals.total}`;
+                    
+                    if (newTotals.shipping === 0) {
+                        document.getElementById('summary-shipping').classList.add('gold');
+                    } else {
+                        document.getElementById('summary-shipping').classList.remove('gold');
+                    }
+                });
+            });
+
             // Handle "Continue to Payment"
             window.handleContinueToPayment = () => {
-                const emailInput = checkoutForm.querySelector('input[type="email"]');
-                const fullNameInput = checkoutForm.querySelector('input[placeholder="First and last name"]');
-                
                 if (checkoutForm.checkValidity()) {
-                    localStorage.setItem('euodia_customer_email', emailInput.value);
-                    localStorage.setItem('euodia_customer_name', fullNameInput.value);
+                    const shippingMethod = document.querySelector('input[name="shipping-method"]:checked').value;
+                    const orderDetails = {
+                        name: document.getElementById('checkout-name').value,
+                        email: document.getElementById('checkout-email').value,
+                        phone: document.getElementById('checkout-phone').value,
+                        address: document.getElementById('checkout-address').value,
+                        apartment: document.getElementById('checkout-apartment').value,
+                        city: document.getElementById('checkout-city').value,
+                        province: document.getElementById('checkout-province').value,
+                        postalCode: document.getElementById('checkout-postal').value,
+                        notes: document.getElementById('checkout-notes').value,
+                        shippingMethod: shippingMethod
+                    };
+                    
+                    localStorage.setItem('euodia_order_details', JSON.stringify(orderDetails));
                     window.location.href = 'payment.html';
                 } else {
                     checkoutForm.reportValidity();

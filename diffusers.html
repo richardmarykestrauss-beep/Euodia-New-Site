@@ -7,9 +7,128 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/ecom.css">
+    <link rel="stylesheet" href="css/ecom.css?v=2">
+    <style>
+        /* Specific header style for this page */
+        .collection-header {
+            text-align: center;
+            padding-top: 180px;
+            margin-bottom: 60px;
+        }
+        .collection-header h1 {
+            font-size: 56px;
+            margin: 0;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        .collection-header p {
+            font-size: 16px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Atmospheric Background Animation */
+        .mist-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('images/bg/premium-stone.jpg') center/cover no-repeat;
+            opacity: 0.12;
+            pointer-events: none;
+            animation: mistDrift 40s linear infinite alternate;
+        }
+
+        @keyframes mistDrift {
+            from { transform: scale(1.0) translateX(0); }
+            to { transform: scale(1.2) translateX(2%); }
+        }
+
+        .mist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, transparent 0%, var(--bg) 90%);
+            pointer-events: none;
+        }
+
+        /* Featured Signature Section */
+        .featured-signature {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            margin-bottom: 80px;
+        }
+        .signature-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .gold-subtitle {
+            display: block;
+            font-size: 14px;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .signature-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .signature-image {
+            flex: 1;
+            max-width: 450px;
+            animation: fadeIn 2s ease-out;
+        }
+        .signature-image img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+        .signature-details {
+            flex: 1;
+        }
+        .signature-desc {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+        .signature-price {
+            font-size: 28px;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-family: var(--font-serif);
+        }
+
+        @media (max-width: 768px) {
+            .signature-content {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+            .signature-image {
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
+
+    <div class="mist-background"></div>
+    <div class="mist-overlay"></div>
 
     <nav>
         <div class="nav-container">
@@ -37,32 +156,183 @@
         <p>Continuous fragrance for your space.</p>
     </div>
 
-    <div class="container" style="padding-top: 0;">
-        <div class="product-grid">
-            <!-- Covenant Diffuser -->
-            <div class="product-card" id="card-covenant">
-                <div class="product-image-container">
+    <!-- Featured Product: Covenant -->
+    <section class="featured-signature">
+        <div class="container">
+            <div class="signature-header">
+                <span class="gold-subtitle">THE SIGNATURE PIECE</span>
+                <h2 class="serif gold" style="font-size: 48px;">Covenant</h2>
+            </div>
+            
+            <div class="signature-content">
+                <div class="signature-image">
                     <img src="images/covenant-bottle.png" alt="Covenant Reed Diffuser">
                 </div>
+                <div class="signature-details">
+                    <p class="signature-desc">A sacred, grounding blend. Designed to anchor the atmosphere in quiet reverence. Cedarwood, Cypress, and Frankincense.</p>
+                    <div class="signature-price">R450</div>
+                    <div class="product-controls">
+                        <div class="summary-row">
+                            <input type="number" value="1" min="1" class="qty-input" id="qty-covenant" style="width: 30%;">
+                            <button class="btn btn-primary add-to-cart-btn" 
+                                    data-id="covenant" 
+                                    data-name="Covenant" 
+                                    data-type="Reed Diffuser" 
+                                    data-price="450" 
+                                    data-size="Standard"
+                                    data-image="images/covenant-bottle.png"
+                                    style="width: 65%;">ADD TO CART</button>
+                        </div>
+                        <a href="product-detail.html?id=covenant" class="btn btn-secondary" style="margin-top: 20px; display: block; text-align: center;">VIEW DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" style="padding-top: 20px;">
+        <div class="collection-intro">
+            <h2 class="serif gold" style="text-align: center; margin-bottom: 60px; letter-spacing: 4px;">THE COLLECTION</h2>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Tropical Escape Diffuser -->
+            <div class="product-card" id="card-tropical-diffuser">
+                <div class="product-image-container">
+                    <img src="images/diffusers/tropical_escape.png" alt="Tropical Escape Reed Diffuser">
+                </div>
                 <div class="product-type">Reed Diffuser</div>
-                <h2 class="product-title">Covenant</h2>
-                <div class="product-desc">A sacred, grounding blend. Designed to anchor the atmosphere in quiet reverence. Cedarwood, Cypress, and Frankincense.</div>
+                <h2 class="product-title">Tropical Escape</h2>
+                <div class="product-desc">A warm, luminous atmosphere anchored in golden light. Tropical brightness softened into a steady, grounding calm.</div>
                 
                 <div class="product-controls">
                     <div class="summary-row">
                         <div class="price-display">R450</div>
                     </div>
                     <div class="summary-row">
-                        <input type="number" value="1" min="1" class="qty-input" id="qty-covenant" style="width: 30%;">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-tropical-diffuser" style="width: 30%;">
                         <button class="btn btn-primary add-to-cart-btn" 
-                                data-id="covenant" 
-                                data-name="Covenant" 
+                                data-id="tropical-diffuser" 
+                                data-name="Tropical Escape Diffuser" 
                                 data-type="Reed Diffuser" 
                                 data-price="450" 
                                 data-size="Standard"
-                                data-image="images/covenant-bottle.png"
-                                style="width: 65%;">BEGIN THE EXPERIENCE</button>
+                                data-image="images/diffusers/tropical_escape.png"
+                                style="width: 65%;">ADD TO CART</button>
                     </div>
+                    <a href="product-detail.html?id=tropical-diffuser" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Citrus Enigma Diffuser -->
+            <div class="product-card" id="card-citrus-diffuser">
+                <div class="product-image-container">
+                    <img src="images/diffusers/citrus_enigma.png" alt="Citrus Enigma Reed Diffuser">
+                </div>
+                <div class="product-type">Reed Diffuser</div>
+                <h2 class="product-title">Citrus Enigma</h2>
+                <div class="product-desc">Vibrant citrus clarity balanced by a veiled, smoother depth. An awakening composition that settles with quiet intention.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <div class="price-display">R450</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-citrus-diffuser" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="citrus-diffuser" 
+                                data-name="Citrus Enigma Diffuser" 
+                                data-type="Reed Diffuser" 
+                                data-price="450" 
+                                data-size="Standard"
+                                data-image="images/diffusers/citrus_enigma.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=citrus-diffuser" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Rose Haven Diffuser -->
+            <div class="product-card" id="card-rose-diffuser">
+                <div class="product-image-container">
+                    <img src="images/diffusers/rose_haven.png" alt="Rose Haven Reed Diffuser">
+                </div>
+                <div class="product-type">Reed Diffuser</div>
+                <h2 class="product-title">Rose Haven</h2>
+                <div class="product-desc">A soft, composed floral stillness. Graceful rose notes that layer the room in a state of calm, enduring beauty.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <div class="price-display">R450</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-rose-diffuser" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="rose-diffuser" 
+                                data-name="Rose Haven Diffuser" 
+                                data-type="Reed Diffuser" 
+                                data-price="450" 
+                                data-size="Standard"
+                                data-image="images/diffusers/rose_haven.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=rose-diffuser" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Zesty Harmony Diffuser -->
+            <div class="product-card" id="card-zesty-diffuser">
+                <div class="product-image-container">
+                    <img src="images/diffusers/zesty_harmony.png" alt="Zesty Harmony Reed Diffuser">
+                </div>
+                <div class="product-type">Reed Diffuser</div>
+                <h2 class="product-title">Zesty Harmony</h2>
+                <div class="product-desc">Crisp, energetic, and perfectly balanced. A spirited fragrance that brings a sense of lively order to any environment.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <div class="price-display">R450</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-zesty-diffuser" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="zesty-diffuser" 
+                                data-name="Zesty Harmony Diffuser" 
+                                data-type="Reed Diffuser" 
+                                data-price="450" 
+                                data-size="Standard"
+                                data-image="images/diffusers/zesty_harmony.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=zesty-diffuser" class="btn btn-secondary">VIEW DETAILS</a>
+                </div>
+            </div>
+
+            <!-- Pearfection Bliss Diffuser -->
+            <div class="product-card" id="card-pearfection-diffuser">
+                <div class="product-image-container">
+                    <img src="images/diffusers/pearfection_bliss.png" alt="Pearfection Bliss Reed Diffuser">
+                </div>
+                <div class="product-type">Reed Diffuser</div>
+                <h2 class="product-title">Pearfection Bliss</h2>
+                <div class="product-desc">Golden orchard sweetness met with a sophisticated, clean edge. A fragrance that feels both ripe and meticulously refined.</div>
+                
+                <div class="product-controls">
+                    <div class="summary-row">
+                        <div class="price-display">R450</div>
+                    </div>
+                    <div class="summary-row">
+                        <input type="number" value="1" min="1" class="qty-input" id="qty-pearfection-diffuser" style="width: 30%;">
+                        <button class="btn btn-primary add-to-cart-btn" 
+                                data-id="pearfection-diffuser" 
+                                data-name="Pearfection Bliss Diffuser" 
+                                data-type="Reed Diffuser" 
+                                data-price="450" 
+                                data-size="Standard"
+                                data-image="images/diffusers/pearfection_bliss.png"
+                                style="width: 65%;">ADD TO CART</button>
+                    </div>
+                    <a href="product-detail.html?id=pearfection-diffuser" class="btn btn-secondary">VIEW DETAILS</a>
                 </div>
             </div>
         </div>
