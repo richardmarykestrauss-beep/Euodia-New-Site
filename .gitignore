@@ -2,4 +2,7 @@
 node_modules/
 .DS_Store
 *.txt
+!robots.txt
 serve.ps1
+orders.json
+images/logo_official_new.png

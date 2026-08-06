@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EUODIA | Product Details</title>
+    <meta name="description" content="EUODIA sacred fragrance — product details, sacred ingredients and ritual. Order online or via WhatsApp, delivered across South Africa.">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -126,6 +128,10 @@
                 return;
             }
 
+            // Pricing: room mists have 100ml/200ml sizes; diffusers have a single price
+            const hasSizes = typeof product.price100 === 'number' && typeof product.price200 === 'number';
+            const basePrice = hasSizes ? product.price100 : (product.price || product.price100);
+
             // Generate Ingredients HTML
             const ingredientsHTML = product.ingredients.map(ing => `
                 <div class="ingredient-item">
@@ -162,31 +168,32 @@
 
                     <span class="scarcity-line">Limited release — once sold out, this blend may not return soon.</span>
 
-                    <div class="price-display detail-price" id="detail-price" style="margin: 0 0 10px;">R130</div>
-                    
+                    <div class="price-display detail-price" id="detail-price" style="margin: 0 0 10px;">R${basePrice}</div>
+
                     <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 15px;">
+                        ${hasSizes ? `
                         <div style="flex: 1;">
                             <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 8px; letter-spacing: 1px;">SIZE</label>
                             <select class="size-select" style="width: 100%;">
                                 <option value="100ml">100ml</option>
                                 <option value="200ml">200ml</option>
                             </select>
-                        </div>
+                        </div>` : ''}
                         <div style="width: 80px;">
                             <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 8px; letter-spacing: 1px;">QTY</label>
                             <input type="number" value="1" min="1" class="qty-input" id="qty-${product.id}" style="width: 100%;">
                         </div>
                     </div>
-                    
-                    <div class="shipping-note" style="margin-bottom: 5px;">Flat rate delivery R140 across South Africa.</div>
+
+                    <div class="shipping-note" style="margin-bottom: 5px;">Courier delivery R100 across South Africa — free over R1,500.</div>
                     <div class="context-line" style="margin-bottom: 25px;">Available across South Africa</div>
-                    
-                    <button class="btn btn-primary add-to-cart-btn" 
-                            data-id="${product.id}" 
-                            data-name="${product.name}" 
-                            data-type="${product.type}" 
-                            data-price="130" 
-                            data-size="100ml"
+
+                    <button class="btn btn-primary add-to-cart-btn"
+                            data-id="${product.id}"
+                            data-name="${product.name}"
+                            data-type="${product.type}"
+                            data-price="${basePrice}"
+                            data-size="${hasSizes ? '100ml' : 'Standard'}"
                             data-image="${product.image}"
                             style="padding: 22px 40px; font-size: 13px; width: 100%; font-weight: 600; letter-spacing: 3px;">BEGIN THE EXPERIENCE</button>
                     

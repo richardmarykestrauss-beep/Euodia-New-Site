@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.env
+.git
+.gitignore
+printing_assets
+EUODIA_PRINT_ASSETS.zip
+Dockerfile
+.dockerignore
+index.html.txt
+serve.ps1

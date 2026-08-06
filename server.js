@@ -70,8 +70,12 @@ app.post('/api/paystack-webhook', async (req, res) => {
     res.sendStatus(200);
 });
 
-// Endpoint to view orders from Supabase
+// Endpoint to view orders from Supabase (admin only — requires x-admin-key header)
 app.get('/api/orders', async (req, res) => {
+    const adminKey = process.env.ORDERS_ADMIN_KEY;
+    if (!adminKey || req.headers['x-admin-key'] !== adminKey) {
+        return res.status(401).send('Unauthorized');
+    }
     const { data, error } = await supabase
         .from('orders')
         .select('*')

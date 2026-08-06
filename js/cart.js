@@ -83,7 +83,7 @@ const PRODUCTS = {
         id: 'covenant',
         name: 'Covenant',
         type: 'Reed Diffuser',
-        price100: 450,
+        price: 450,
         image: 'images/covenant-bottle.png',
         shortDesc: 'A sacred, grounding anchor for the atmosphere.',
         poeticDesc: 'A sacred, grounding anchor for the atmosphere. Designed to cultivate a space of quiet reverence and depth.',
@@ -92,6 +92,81 @@ const PRODUCTS = {
             { name: 'Ancient Cedar', desc: 'grounding, sacred anchor' },
             { name: 'Sacred Resin', desc: 'quiet reverence & depth' },
             { name: 'Dark Cypress', desc: 'clarifying, steady presence' }
+        ]
+    },
+    'tropical-diffuser': {
+        id: 'tropical-diffuser',
+        name: 'Tropical Escape Diffuser',
+        type: 'Reed Diffuser',
+        price: 450,
+        image: 'images/diffusers/tropical_escape.png',
+        shortDesc: 'A warm, luminous atmosphere anchored in golden light.',
+        poeticDesc: 'A warm, luminous atmosphere anchored in golden light. Tropical brightness softened into a steady, grounding calm.',
+        ritual: 'Insert reeds into the vessel. Allow 24 hours for the fragrance to fully saturate. Flip reeds weekly to refresh the presence.\n\nUse in moments of stillness, prayer, focus, or rest.',
+        ingredients: [
+            { name: 'Petrichor', desc: 'the scent of rain on earth' },
+            { name: 'Santal', desc: 'creamy, wood-driven warmth' },
+            { name: 'Amber', desc: 'golden, enduring depth' }
+        ]
+    },
+    'citrus-diffuser': {
+        id: 'citrus-diffuser',
+        name: 'Citrus Enigma Diffuser',
+        type: 'Reed Diffuser',
+        price: 450,
+        image: 'images/diffusers/citrus_enigma.png',
+        shortDesc: 'Vibrant citrus clarity balanced by a veiled, smoother depth.',
+        poeticDesc: 'Vibrant citrus clarity balanced by a veiled, smoother depth. An awakening composition that settles with quiet intention.',
+        ritual: 'Insert reeds into the vessel. Allow 24 hours for the fragrance to fully saturate. Flip reeds weekly to refresh the presence.\n\nUse in moments of stillness, prayer, focus, or rest.',
+        ingredients: [
+            { name: 'Bergamot', desc: 'clarity & awakening' },
+            { name: 'Frankincense', desc: 'sacred, elevating resin' },
+            { name: 'Neroli', desc: 'focused solar presence' }
+        ]
+    },
+    'rose-diffuser': {
+        id: 'rose-diffuser',
+        name: 'Rose Haven Diffuser',
+        type: 'Reed Diffuser',
+        price: 450,
+        image: 'images/diffusers/rose_haven.png',
+        shortDesc: 'A soft, composed floral stillness.',
+        poeticDesc: 'A soft, composed floral stillness. Graceful rose notes that layer the room in a state of calm, enduring beauty.',
+        ritual: 'Insert reeds into the vessel. Allow 24 hours for the fragrance to fully saturate. Flip reeds weekly to refresh the presence.\n\nUse in moments of stillness, prayer, focus, or rest.',
+        ingredients: [
+            { name: 'Damask Rose', desc: 'heavy, velvety floral' },
+            { name: 'Oud', desc: 'mystical, grounding resin' },
+            { name: 'Myrrh', desc: 'ancient, peaceful stillness' }
+        ]
+    },
+    'zesty-diffuser': {
+        id: 'zesty-diffuser',
+        name: 'Zesty Harmony Diffuser',
+        type: 'Reed Diffuser',
+        price: 450,
+        image: 'images/diffusers/zesty_harmony.png',
+        shortDesc: 'Solar brightness brought into perfect alignment.',
+        poeticDesc: 'Solar brightness brought into perfect alignment. Radiant notes that rise with clarity before settling into a deep, rounded finish.',
+        ritual: 'Insert reeds into the vessel. Allow 24 hours for the fragrance to fully saturate. Flip reeds weekly to refresh the presence.\n\nUse in moments of stillness, prayer, focus, or rest.',
+        ingredients: [
+            { name: 'Lemongrass', desc: 'radiant energy & focus' },
+            { name: 'Cedarwood', desc: 'stabilizing, earthy anchor' },
+            { name: 'Vetiver', desc: 'deep, grounding calm' }
+        ]
+    },
+    'pearfection-diffuser': {
+        id: 'pearfection-diffuser',
+        name: 'Pearfection Bliss Diffuser',
+        type: 'Reed Diffuser',
+        price: 450,
+        image: 'images/diffusers/pearfection_bliss.png',
+        shortDesc: 'Velvety sweetness that invites a sense of gentle abundance.',
+        poeticDesc: 'Velvety sweetness that invites a sense of gentle abundance. A comforting fragrance crafted for moments of quiet warmth.',
+        ritual: 'Insert reeds into the vessel. Allow 24 hours for the fragrance to fully saturate. Flip reeds weekly to refresh the presence.\n\nUse in moments of stillness, prayer, focus, or rest.',
+        ingredients: [
+            { name: 'Pear Blossom', desc: 'gentle, light abundance' },
+            { name: 'White Musk', desc: 'velvety, soft atmosphere' },
+            { name: 'Vanilla Bean', desc: 'comforting, quiet warmth' }
         ]
     }
 };
@@ -180,7 +255,11 @@ function setupPriceUpdates() {
             if (!card) return;
             
             const priceDisplay = card.querySelector('.price-display');
-            const price = e.target.value === '200ml' ? 180 : 130;
+            const addBtn = card.querySelector('.add-to-cart-btn');
+            const productData = addBtn ? PRODUCTS[addBtn.dataset.id] : null;
+            const price = e.target.value === '200ml'
+                ? (productData?.price200 || 180)
+                : (productData?.price100 || 130);
             priceDisplay.textContent = `R${price}`;
             
             // Update data attributes if needed
